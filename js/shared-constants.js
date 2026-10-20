@@ -17,6 +17,16 @@ const annotations = [
     { year: 2020, label: "COVID-19 restrictions" }
 ];
 
+// Filter buttons for the road user groups (Week 6 filter pattern)
+const filters_road_user = [
+    { id: "All road users", label: "All road users", isActive: true },
+    { id: "Car driver", label: "Car drivers", isActive: false },
+    { id: "Motorcyclist", label: "Motorcyclists", isActive: false },
+    { id: "Pedal cyclist", label: "Cyclists", isActive: false },
+    { id: "Car passenger", label: "Car passengers", isActive: false },
+    { id: "Pedestrian", label: "Pedestrians", isActive: false }
+];
+
 // Inner chart group, assigned in line-chart.js and reused in interactions.js
 let innerChart;
 

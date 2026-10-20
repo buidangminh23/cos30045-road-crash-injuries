@@ -39,3 +39,32 @@ footer {
     font-size: 14px;
     color: #555555;
 }
+
+/* Filter buttons (Week 6 filters exercise) */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.filter {
+    padding: 8px 14px;
+    font-size: 15px;
+    color: #1f5f8b;
+    background-color: #e8f0f6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in;
+}
+
+.filter:hover,
+.filter.active {
+    color: #ffffff;
+    background-color: #1f5f8b;
+}
+
+.filter.active {
+    cursor: default;
+}
