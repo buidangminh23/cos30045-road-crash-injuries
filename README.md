@@ -7,7 +7,7 @@ COS30045 Data Visualisation team project (2026). An interactive D3 data story bu
 | Name | Student ID | Role |
 |---|---|---|
 | Bui Dang Minh | 105716425 | |
-| Nguyen Nhu Tuan Long | | |
+| Nguyen Nhu Tuan Long | 106216078 | |
 
 ## Structure
 
