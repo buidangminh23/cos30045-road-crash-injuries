@@ -27,3 +27,11 @@
 #line-chart circle {
     cursor: pointer;
 }
+
+/* Message shown when the data cannot be loaded */
+.error-message {
+    padding: 12px;
+    color: #8a1f11;
+    background-color: #fdecea;
+    border-radius: 4px;
+}
