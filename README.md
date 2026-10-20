@@ -7,7 +7,7 @@ COS30045 Data Visualisation team project (2026). An interactive D3 data story bu
 | Name | Student ID | Role |
 |---|---|---|
 | Bui Dang Minh | 105716425 | |
-| | | |
+| Nguyen Nhu Tuan Long | | |
 
 ## Structure
 
@@ -38,4 +38,5 @@ Open the folder with a local web server (for example VS Code Live Server), becau
 
 ## Hosting
 
-Swinburne Mercury server.
+- GitHub Pages: https://buidangminh23.github.io/cos30045-road-crash-injuries/ (deployed from `main`)
+- Swinburne Mercury server
