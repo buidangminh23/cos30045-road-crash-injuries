@@ -54,3 +54,59 @@ const populateFilters = (data) => {
             .attr("cy", d => yScale(d.hospitalisations));
     };
 };
+
+// Generated with GenAI (Claude Opus 5.5), following the Week 6 tooltip exercise (Exercise 6.4)
+
+// Create the tooltip as an SVG group inside the inner chart, hidden at the start
+const createTooltip = () => {
+    const tooltip = innerChart
+        .append("g")
+            .attr("class", "tooltip")
+            .style("opacity", 0);
+
+    tooltip
+        .append("rect")
+            .attr("width", tooltipWidth)
+            .attr("height", tooltipHeight)
+            .attr("rx", 3)
+            .attr("ry", 3)
+            .attr("fill", lineColor)
+            .attr("fill-opacity", 0.9);
+
+    tooltip
+        .append("text")
+            .text("NA")
+            .attr("x", tooltipWidth / 2)
+            .attr("y", tooltipHeight / 2 + 2)
+            .attr("text-anchor", "middle")
+            .attr("alignment-baseline", "middle")
+            .attr("fill", "white")
+            .style("font-weight", 700);
+};
+
+// Show the year and the count when the mouse enters a circle
+const handleMouseEvents = () => {
+    innerChart.selectAll("circle")
+        .on("mouseenter", (e, d) => {
+            d3.select(".tooltip text")
+                .text(`${d.year}: ${d3.format(",")(d.hospitalisations)}`);
+
+            // Read the position of the circle that was entered
+            const cx = +e.target.getAttribute("cx");
+            const cy = +e.target.getAttribute("cy");
+
+            // Place the tooltip above the circle, or below it when the circle is near the top
+            const tooltipY = cy < 2 * tooltipHeight ? cy + 0.5 * tooltipHeight : cy - 1.5 * tooltipHeight;
+
+            d3.select(".tooltip")
+                .attr("transform", `translate(${cx - 0.5 * tooltipWidth}, ${tooltipY})`)
+                .transition()
+                .duration(200)
+                .style("opacity", 1);
+        })
+        .on("mouseleave", (e, d) => {
+            d3.select(".tooltip")
+                .style("opacity", 0)
+                .attr("transform", `translate(0, 500)`);
+        });
+};

@@ -11,6 +11,10 @@ const innerHeight = height - margin.top - margin.bottom;
 const lineColor = "#1f5f8b";
 const annotationColor = "#777777";
 
+// Tooltip size (Week 6 tooltip exercise)
+const tooltipWidth = 130;
+const tooltipHeight = 32;
+
 // Years where a vertical line explains a change in the trend
 const annotations = [
     { year: 2017, label: "NSW counting change" },

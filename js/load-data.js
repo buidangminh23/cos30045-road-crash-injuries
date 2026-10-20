@@ -10,6 +10,8 @@ d3.csv("data/road-user-trend.csv", d => ({
         console.log(data);
         drawLineChart(data);
         populateFilters(data);
+        createTooltip();
+        handleMouseEvents();
     })
     .catch(error => {
         console.error("Error loading the CSV file:", error);

@@ -22,3 +22,8 @@
 .annotation-label {
     font-size: 13px;
 }
+
+/* Circles can be hovered to show the tooltip */
+#line-chart circle {
+    cursor: pointer;
+}
