@@ -5,23 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Interactive data story on hospitalised injuries from road crashes in Australia, 2011-2021">
     <title>Hospitalised Injuries from Road Crashes in Australia</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/visualisation.css">
 </head>
 <body>
     <header>
         <h1>Hospitalised Injuries from Road Crashes in Australia</h1>
         <nav>
             <ul>
-                <li><a href="#overview">Overview</a></li>
+                <li><a href="#road-users">Road users</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
-        <section id="overview">
-            <h2>Overview</h2>
-            <p>Introduction to the data story.</p>
-            <div id="chart-overview" class="chart"></div>
+        <section id="road-users">
+            <h2>Who is being hurt on Australian roads?</h2>
+            <div id="line-chart" class="responsive-svg-container"></div>
         </section>
     </main>
 
@@ -30,9 +30,10 @@
         <p>COS30045 Data Visualisation, Swinburne University of Technology, 2026</p>
     </footer>
 
-    <!-- D3 v7 loaded the same way as the unit exercises -->
+    <!-- D3 v7, loaded the same way as the unit exercises -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="js/constants.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Load the project scripts (load-data.js last, as in the Week 5 lecture) -->
+    <script src="js/shared-constants.js"></script>
+    <script src="js/load-data.js"></script>
 </body>
 </html>

@@ -1,0 +1,7 @@
+/* Chart containers scale with the page width (Week 4 responsive SVG container) */
+.responsive-svg-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    max-width: 1000px;
+}

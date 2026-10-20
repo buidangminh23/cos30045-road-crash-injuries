@@ -11,7 +11,7 @@ body {
 header,
 main,
 footer {
-    max-width: 1100px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 0 16px;
 }
@@ -24,7 +24,12 @@ nav ul {
     list-style: none;
 }
 
-/* Chart containers scale with the page width */
-.chart {
-    width: 100%;
+nav a {
+    color: #1f5f8b;
+}
+
+footer {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #555555;
 }
