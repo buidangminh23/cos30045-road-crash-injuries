@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive data story on hospitalised injuries from road crashes in Australia, 2011-2021">
+    <title>Hospitalised Injuries from Road Crashes in Australia</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Hospitalised Injuries from Road Crashes in Australia</h1>
+        <nav>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="overview">
+            <h2>Overview</h2>
+            <p>Introduction to the data story.</p>
+            <div id="chart-overview" class="chart"></div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Data source: <a href="https://www.bitre.gov.au/publications/ongoing/hospitalised-injury">BITRE Hospitalised Injury Data</a></p>
+        <p>COS30045 Data Visualisation, Swinburne University of Technology, 2026</p>
+    </footer>
+
+    <!-- D3 v7 loaded the same way as the unit exercises -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="js/constants.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
