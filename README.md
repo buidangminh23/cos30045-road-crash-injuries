@@ -59,8 +59,7 @@ Open the folder with a local web server (for example VS Code Live Server), becau
 
 ## Hosting
 
-- GitHub Pages: https://buidangminh23.github.io/cos30045-road-crash-injuries/ (deployed from `main`)
-- Swinburne Mercury server
+The website is hosted on GitHub Pages and deployed from `main`: https://buidangminh23.github.io/cos30045-road-crash-injuries/
 
 ## Generative AI use
 
