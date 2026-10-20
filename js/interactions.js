@@ -59,9 +59,11 @@ const populateFilters = (data) => {
 
 // Create the tooltip as an SVG group inside the inner chart, hidden at the start
 const createTooltip = () => {
+    // Start below the chart, like after mouseleave, so the hidden tooltip never covers a circle
     const tooltip = innerChart
         .append("g")
             .attr("class", "tooltip")
+            .attr("transform", `translate(0, 500)`)
             .style("opacity", 0);
 
     tooltip
@@ -98,8 +100,11 @@ const handleMouseEvents = () => {
             // Place the tooltip above the circle, or below it when the circle is near the top
             const tooltipY = cy < 2 * tooltipHeight ? cy + 0.5 * tooltipHeight : cy - 1.5 * tooltipHeight;
 
+            // Centre the tooltip on the circle but keep it inside the SVG at both ends of the x axis
+            const tooltipX = Math.min(Math.max(cx - 0.5 * tooltipWidth, -margin.left), innerWidth + margin.right - tooltipWidth);
+
             d3.select(".tooltip")
-                .attr("transform", `translate(${cx - 0.5 * tooltipWidth}, ${tooltipY})`)
+                .attr("transform", `translate(${tooltipX}, ${tooltipY})`)
                 .transition()
                 .duration(200)
                 .style("opacity", 1);
