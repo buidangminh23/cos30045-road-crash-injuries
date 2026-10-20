@@ -1,0 +1,70 @@
+/* Base page layout */
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    color: #222222;
+    background-color: #ffffff;
+}
+
+header,
+main,
+footer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+/* Navigation links in the header */
+nav ul {
+    display: flex;
+    gap: 16px;
+    padding: 0;
+    list-style: none;
+}
+
+nav a {
+    color: #1f5f8b;
+}
+
+footer {
+    margin-top: 40px;
+    font-size: 14px;
+    color: #555555;
+}
+
+/* Notes under a chart */
+.chart-note {
+    font-size: 14px;
+    color: #555555;
+}
+
+/* Filter buttons (Week 6 filters exercise) */
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 16px 0;
+}
+
+.filter {
+    padding: 8px 14px;
+    font-size: 15px;
+    color: #1f5f8b;
+    background-color: #e8f0f6;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in;
+}
+
+.filter:hover,
+.filter.active {
+    color: #ffffff;
+    background-color: #1f5f8b;
+}
+
+.filter.active {
+    cursor: default;
+}
