@@ -11,6 +11,12 @@ const innerHeight = height - margin.top - margin.bottom;
 const lineColor = "#1f5f8b";
 const annotationColor = "#777777";
 
+// Years where a vertical line explains a change in the trend
+const annotations = [
+    { year: 2017, label: "NSW counting change" },
+    { year: 2020, label: "COVID-19 restrictions" }
+];
+
 // Inner chart group, assigned in line-chart.js and reused in interactions.js
 let innerChart;
 

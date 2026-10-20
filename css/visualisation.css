@@ -17,3 +17,8 @@
     font-size: 14px;
     fill: #444444;
 }
+
+/* Annotation labels above the chart */
+.annotation-label {
+    font-size: 13px;
+}

@@ -56,6 +56,30 @@ const drawLineChart = (data) => {
             .attr("text-anchor", "end")
             .attr("class", "axis-label");
 
+    // Draw the annotation lines before the trend line so the line stays on top
+    innerChart
+        .selectAll(".annotation-line")
+        .data(annotations)
+        .join("line")
+            .attr("class", "annotation-line")
+            .attr("x1", d => xScale(d.year))
+            .attr("x2", d => xScale(d.year))
+            .attr("y1", 0)
+            .attr("y2", innerHeight)
+            .attr("stroke", annotationColor)
+            .attr("stroke-dasharray", "4 4");
+
+    innerChart
+        .selectAll(".annotation-label")
+        .data(annotations)
+        .join("text")
+            .attr("class", "annotation-label")
+            .text(d => d.label)
+            .attr("x", d => xScale(d.year))
+            .attr("y", -10)
+            .attr("text-anchor", "middle")
+            .attr("fill", annotationColor);
+
     // Draw the line
     innerChart
         .append("path")
