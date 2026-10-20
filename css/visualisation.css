@@ -5,3 +5,15 @@
     width: 100%;
     max-width: 1000px;
 }
+
+/* Axis tick labels */
+.tick text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+/* Axis labels */
+.axis-label {
+    font-size: 14px;
+    fill: #444444;
+}
