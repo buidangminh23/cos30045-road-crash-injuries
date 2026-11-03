@@ -24,6 +24,14 @@ const drawRoadUserStack = (data) => {
         .append("svg")
             .attr("viewBox", `0 0 ${storyWidth} ${storyHeight}`);
 
+    // Accessibility: summary of each group in the first and last year (Week 8)
+    const first = wideData[0];
+    const last = wideData[wideData.length - 1];
+    describeChart(svg, "road-user-stack",
+        "Stacked bar chart: road crash hospitalisations per year by road user group, 2011 to 2021",
+        "Car occupants are the largest group and cyclists grew fastest. "
+        + roadUserGroups.map(group => `${roadUserLabels[group]}: ${formatNumber(first[group])} in ${first.year}, ${formatNumber(last[group])} in ${last.year}.`).join(" "));
+
     const innerChart = svg
         .append("g")
             .attr("transform", `translate(${labelledMargin.left}, ${labelledMargin.top})`);
@@ -143,20 +151,24 @@ const drawRoadUserStack = (data) => {
             .duration(duration)
                 .attr("y", d => d.labelY);
 
-        // Tooltips for the bars of the selected groups
-        barsGroup.selectAll(".stack-bar")
-            .on("mouseenter", (e, d) => {
-                const lines = [
-                    `${d.year}: ${roadUserLabels[d.group]}`,
-                    `${formatNumber(d.y1 - d.y0)} hospitalisations`,
-                    `${d.share.toFixed(1)}% of all road users that year`
-                ];
-                showChartTooltip(stackTooltip, lines, xScaleStack(d.year) + xScaleStack.bandwidth() / 2, yScaleStack(d.y1), innerW, labelledMargin);
-            })
-            .on("mouseleave", () => hideChartTooltip(stackTooltip));
+        // Tooltips for the bars of the selected groups, for mouse, touch and keyboard (Week 8)
+        const showStackTooltip = (e, d) => {
+            const lines = [
+                `${d.year}: ${roadUserLabels[d.group]}`,
+                `${formatNumber(d.y1 - d.y0)} hospitalisations`,
+                `${d.share.toFixed(1)}% of all road users that year`
+            ];
+            showChartTooltip(stackTooltip, lines, xScaleStack(d.year) + xScaleStack.bandwidth() / 2, yScaleStack(d.y1), innerW, labelledMargin);
+        };
+        makeMarksAccessible(
+            barsGroup.selectAll(".stack-bar"),
+            d => `${d.year}, ${roadUserLabels[d.group]}: ${formatNumber(d.y1 - d.y0)} hospitalisations`,
+            showStackTooltip,
+            () => hideChartTooltip(stackTooltip)
+        );
         hideChartTooltip(stackTooltip);
     };
 
     updateStack("All", false);
-    createFilterButtons("filters-road-user", filtersRoadUser, selectedId => updateStack(selectedId, true));
+    createFilterButtons("filters-road-user", filtersRoadUser, "Show one road user group", selectedId => updateStack(selectedId, true));
 };

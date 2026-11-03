@@ -24,6 +24,13 @@ const drawNationalTrend = (data) => {
         .append("svg")
             .attr("viewBox", `0 0 ${storyWidth} ${storyHeight}`);
 
+    // Accessibility: a title and a description that lists every year for screen readers (Week 8)
+    describeChart(svg, "national-trend",
+        "Line chart: road crash hospitalisations in Australia per year, 2011 to 2021",
+        "Hospitalisations rose from 34,033 in 2011 to 39,505 in 2021, an increase of 16%. They fell only in 2020, during COVID-19 restrictions. "
+        + data.map(d => `${d.year}: ${formatNumber(d.hospitalisations)}.`).join(" ")
+        + " Years 2011 and 2017 to 2021 are shaded grey because of recording changes.");
+
     const innerChart = svg
         .append("g")
             .attr("transform", `translate(${storyMargin.left}, ${storyMargin.top})`);
@@ -133,13 +140,18 @@ const drawNationalTrend = (data) => {
     // The tooltip is created last so it is drawn above the marks
     const trendTooltip = createChartTooltip(innerChart);
 
-    innerChart.selectAll(".trend-point")
-        .on("mouseenter", (e, d) => {
-            const lines = [`${d.year}: ${formatNumber(d.hospitalisations)} hospitalisations`];
-            if (trendNotes[d.year]) {
-                lines.push(trendNotes[d.year]);
-            }
-            showChartTooltip(trendTooltip, lines, xScaleTrend(d.year), yScaleTrend(d.hospitalisations), innerW);
-        })
-        .on("mouseleave", () => hideChartTooltip(trendTooltip));
+    // The same tooltip for mouse, touch and keyboard (Week 8)
+    const showTrendTooltip = (e, d) => {
+        const lines = [`${d.year}: ${formatNumber(d.hospitalisations)} hospitalisations`];
+        if (trendNotes[d.year]) {
+            lines.push(trendNotes[d.year]);
+        }
+        showChartTooltip(trendTooltip, lines, xScaleTrend(d.year), yScaleTrend(d.hospitalisations), innerW);
+    };
+    makeMarksAccessible(
+        innerChart.selectAll(".trend-point"),
+        d => `${d.year}: ${formatNumber(d.hospitalisations)} hospitalisations`,
+        showTrendTooltip,
+        () => hideChartTooltip(trendTooltip)
+    );
 };
