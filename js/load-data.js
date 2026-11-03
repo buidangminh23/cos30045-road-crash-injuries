@@ -35,3 +35,14 @@ d3.csv("data/c2_road_user_group_by_year.csv", d => ({
 }))
     .then(data => drawRoadUserStack(data))
     .catch(error => showLoadError("road-user-stack", error));
+
+// Q3: hospitalisations and bed days per case for each road user, 2016-2021 (C3)
+d3.csv("data/c3_road_user_severity_2016_2021.csv", d => ({
+    roadUser: d.road_user,
+    group: d.road_user_group,
+    hospitalisations: +d.hospitalisations,
+    cases: +d.cases,
+    bedDaysPerCase: +d.bed_days_per_case
+}))
+    .then(data => drawSeverityScatter(data))
+    .catch(error => showLoadError("severity-scatter", error));
