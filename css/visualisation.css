@@ -26,8 +26,15 @@
 /* Marks of the story charts that show a tooltip */
 .trend-point,
 .month-bar,
-.stack-bar {
+.stack-bar,
+.severity-point {
     cursor: pointer;
+}
+
+/* Colour key of the scatter plot */
+.key-label {
+    font-size: 13px;
+    fill: #333333;
 }
 
 /* Labels placed next to the marks instead of a legend */
