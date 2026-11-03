@@ -42,3 +42,20 @@ const yScale = d3.scaleLinear();
 const lineGenerator = d3.line()
     .x(d => xScale(d.year))
     .y(d => yScale(d.hospitalisations));
+
+// Size of the story charts C1 to C5 (margin convention from Week 5)
+const storyWidth = 700;
+const storyHeight = 400;
+const storyMargin = { top: 50, right: 30, bottom: 60, left: 100 };
+
+// Colours from the Design Book palette (Figure 3.5)
+const storyColor = "#222222";      // the mark that carries the story
+const contextColor = "#9e9e9e";    // marks that give context
+const bandColor = "#ececec";       // years affected by a recording change
+const referenceColor = "#555555";  // dashed reference lines and their labels
+
+// Shared formats and settings
+const formatNumber = d3.format(",");
+const yearTicks = [2011, 2013, 2015, 2017, 2019, 2021];
+const transitionDuration = 500;
+let tooltipFontSize = 14;
