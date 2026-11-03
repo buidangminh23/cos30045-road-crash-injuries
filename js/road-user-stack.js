@@ -137,7 +137,7 @@ const drawRoadUserStack = (data) => {
             const segment = layer.find(s => s.data.year === lastYear);
             return { key: layer.key, y: yScaleStack((segment[0] + segment[1]) / 2) };
         });
-        spreadLabels(labels, 18, 8, innerH - 4);
+        spreadLabels(labels, chartFontSize * 1.3, 8, innerH - 4);
         labelsGroup
             .selectAll(".direct-label")
             .data(labels, d => d.key)
@@ -169,6 +169,17 @@ const drawRoadUserStack = (data) => {
         hideChartTooltip(stackTooltip);
     };
 
-    updateStack("All", false);
-    createFilterButtons("filters-road-user", filtersRoadUser, "Show one road user group", selectedId => updateStack(selectedId, true));
+    let selectedGroup = "All";
+    updateStack(selectedGroup, false);
+    createFilterButtons("filters-road-user", filtersRoadUser, "Show one road user group", selectedId => {
+        selectedGroup = selectedId;
+        updateStack(selectedGroup, true);
+    });
+
+    // Colour key shown under the chart on narrow screens instead of the direct labels
+    createHtmlKey("road-user-stack", roadUserGroups.map(group => ({ label: roadUserLabels[group], color: roadUserColor(group) })));
+
+    // Space the direct labels again when the text size changes
+    chartResizeHandlers.push(() => updateStack(selectedGroup, false));
+    resizeCharts();
 };

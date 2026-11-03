@@ -3,10 +3,11 @@
 // Size of the story charts C1 to C5 (margin convention from Week 5)
 const storyWidth = 700;
 const storyHeight = 400;
-const storyMargin = { top: 50, right: 30, bottom: 60, left: 100 };
+const storyMargin = { top: 50, right: 30, bottom: 70, left: 100 };
 
-// Charts with direct labels at the right end need a wider right margin
-const labelledMargin = { top: 50, right: 140, bottom: 60, left: 100 };
+// Charts with direct labels at the right end need a wider right margin, and a taller top margin
+// so the labels above the chart do not touch the axis label on a phone
+const labelledMargin = { top: 70, right: 140, bottom: 70, left: 100 };
 
 // Colours from the Design Book palette (Figure 3.5)
 const storyColor = "#222222";      // the mark that carries the story
@@ -40,4 +41,16 @@ const allTrafficBedDays = 5.23;
 const formatNumber = d3.format(",");
 const yearTicks = [2011, 2013, 2015, 2017, 2019, 2021];
 const transitionDuration = 500;
-let tooltipFontSize = 14;
+
+// Accessibility: chart text size in SVG units, scaled with the window width (Week 8 "responsive text size").
+// The SVG shrinks with the screen, so small screens need a larger SVG font: 26 units in a 700-unit-wide
+// SVG shown 328px wide is about 12px, and 11 units in a 968px-wide chart is about 15px.
+const fontSizeScale = d3.scaleLinear()
+    .domain([360, 1000])
+    .range([26, 11])
+    .clamp(true);
+let chartFontSize = 11;
+let tooltipFontSize = 11;
+
+// Functions that charts register to redo their layout (label spacing, key position) when the text size changes
+const chartResizeHandlers = [];

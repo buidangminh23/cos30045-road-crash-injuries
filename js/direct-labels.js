@@ -17,3 +17,22 @@ const spreadLabels = (labels, minGap, minY, maxY) => {
     }
     return labels;
 };
+
+// On narrow screens the direct labels and the SVG keys would be too wide, so CSS hides them and shows this
+// HTML key below the chart instead (Design Book Figure 3.2: on a phone, labels sit under the chart)
+const createHtmlKey = (containerId, items) => {
+    const keyItems = d3.select(`#${containerId}`)
+        .append("ul")
+            .attr("class", "html-key")
+        .selectAll("li")
+        .data(items)
+        .join("li");
+    keyItems
+        .append("span")
+            .attr("class", d => `html-key-swatch ${d.hollow ? "hollow" : ""}`)
+            .style("background-color", d => d.hollow ? "white" : d.color)
+            .style("border-color", d => d.color);
+    keyItems
+        .append("span")
+            .text(d => d.label);
+};
