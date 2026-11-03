@@ -68,13 +68,22 @@ footer {
     background-color: #f4f4f4;
 }
 
-/* Notes under a chart */
+/* Notes under a chart (accessibility: page text at least 16px, Week 8) */
 .chart-note {
-    font-size: 14px;
+    font-size: 16px;
     color: #555555;
 }
 
-/* Filter buttons (Week 6 filters exercise) */
+/* How to use the charts (Week 8 interaction cues) */
+.instructions {
+    max-width: 600px;
+    margin-top: 24px;
+    padding: 15px 20px;
+    background-color: #f4f4f4;
+    border-radius: 4px;
+}
+
+/* Filter buttons (Week 6 filters exercise); black for the active button, as in the Design Book palette */
 .filters {
     display: flex;
     flex-wrap: wrap;
@@ -84,23 +93,43 @@ footer {
 
 .filter {
     padding: 8px 14px;
-    font-size: 15px;
-    color: #1f5f8b;
-    background-color: #e8f0f6;
+    font-size: 16px;
+    color: #222222;
+    background-color: #e6e6e6;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease-in;
 }
 
-.filter:hover,
-.filter.active {
-    color: #ffffff;
-    background-color: #1f5f8b;
+.filter:hover {
+    background-color: #cccccc;
 }
 
 .filter.active {
+    color: #ffffff;
+    background-color: #222222;
     cursor: default;
+}
+
+/* Accessibility: a clear outline when a button or link is reached with the keyboard */
+.filter:focus-visible,
+a:focus-visible {
+    outline: 3px solid #0072b2;
+    outline-offset: 2px;
+}
+
+/* Accessibility: text for screen readers only, hidden on screen (Week 8) */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 
 /* A label in front of a row of buttons when a chart has two sets of filters */
