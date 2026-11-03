@@ -57,3 +57,13 @@ d3.csv("data/c4_age_sex.csv", d => ({
 }))
     .then(data => drawAgeSexBars(data))
     .catch(error => showLoadError("age-sex-bars", error));
+
+// Q5: hospitalisations by state or territory of residence and year (C5)
+d3.csv("data/c5_state_by_year.csv", d => ({
+    year: +d.year,
+    state: d.state,
+    stateName: d.state_name,
+    hospitalisations: +d.hospitalisations
+}))
+    .then(data => drawStateLines(data))
+    .catch(error => showLoadError("state-lines", error));
