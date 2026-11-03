@@ -28,6 +28,17 @@
     cursor: pointer;
 }
 
+/* Marks of the story charts that show a tooltip */
+.trend-point,
+.month-bar {
+    cursor: pointer;
+}
+
+/* Grey bands behind the years with a recording change */
+.break-band {
+    pointer-events: none;
+}
+
 /* Message shown when the data cannot be loaded */
 .error-message {
     padding: 12px;
