@@ -27,7 +27,8 @@
 .trend-point,
 .month-bar,
 .stack-bar,
-.severity-point {
+.severity-point,
+.age-bar {
     cursor: pointer;
 }
 

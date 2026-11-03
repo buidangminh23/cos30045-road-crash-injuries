@@ -102,3 +102,20 @@ footer {
 .filter.active {
     cursor: default;
 }
+
+/* A label in front of a row of buttons when a chart has two sets of filters */
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-row .filters {
+    margin: 6px 0;
+}
+
+.filter-row-label {
+    min-width: 48px;
+    font-weight: 700;
+}

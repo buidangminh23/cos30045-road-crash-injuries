@@ -33,6 +33,9 @@ const filtersRoadUser = [
     ...roadUserGroups.map(group => ({ id: group, label: roadUserLabels[group], isActive: false }))
 ];
 
+// Average hospital stay of all traffic cases, 2016-2021 (total bed days / total cases), used by C3 and C4
+const allTrafficBedDays = 5.23;
+
 // Shared formats and settings
 const formatNumber = d3.format(",");
 const yearTicks = [2011, 2013, 2015, 2017, 2019, 2021];

@@ -4,9 +4,6 @@
 const xScaleSeverity = d3.scaleLinear();
 const yScaleSeverity = d3.scaleLinear();
 
-// Average hospital stay of all traffic cases, 2016-2021 (total bed days / total cases)
-const allTrafficBedDays = 5.23;
-
 // Road users with fewer cases than this are drawn as hollow points: their averages are less certain
 const fewCasesLimit = 1000;
 

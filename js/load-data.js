@@ -46,3 +46,14 @@ d3.csv("data/c3_road_user_severity_2016_2021.csv", d => ({
 }))
     .then(data => drawSeverityScatter(data))
     .catch(error => showLoadError("severity-scatter", error));
+
+// Q4: hospitalisations and bed days per case by age group and sex (C4)
+d3.csv("data/c4_age_sex.csv", d => ({
+    ageGroup: d.age_group,
+    ageOrder: +d.age_order,
+    sex: d.sex,
+    hospitalisations: +d.hospitalisations_2011_2021,
+    bedDaysPerCase: +d.bed_days_per_case_2016_2021
+}))
+    .then(data => drawAgeSexBars(data))
+    .catch(error => showLoadError("age-sex-bars", error));
