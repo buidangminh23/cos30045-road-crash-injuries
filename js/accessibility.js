@@ -42,8 +42,11 @@ const focusSiblingMark = (current, step) => {
 // Accessibility: the same tooltip for mouse, touch and keyboard users.
 // Marks can be reached with Tab, the arrow keys move between them, and each mark has an aria-label.
 const makeMarksAccessible = (marks, ariaLabel, showTooltip, hideTooltip) => {
+    // role="img" lets each mark carry an aria-label: Lighthouse reported aria-label on a plain
+    // <circle> or <rect> as a prohibited attribute
     marks
         .attr("tabindex", 0)
+        .attr("role", "img")
         .attr("aria-label", ariaLabel)
         .on("mouseenter", showTooltip)
         .on("mouseleave", hideTooltip)
