@@ -33,6 +33,18 @@
     cursor: pointer;
 }
 
+/* Accessibility: a mark reached with the Tab key gets a thick outline (Week 8) */
+.trend-point:focus,
+.month-bar:focus,
+.stack-bar:focus,
+.severity-point:focus,
+.age-bar:focus,
+.state-point:focus {
+    outline: none;
+    stroke: #000000;
+    stroke-width: 4px;
+}
+
 /* Grey context lines cannot be hovered; only the selected state has points */
 .state-line {
     pointer-events: none;

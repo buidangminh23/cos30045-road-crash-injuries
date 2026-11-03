@@ -59,6 +59,9 @@ const showChartTooltip = (tooltip, lines, x, y, innerW, chartMargin = storyMargi
         .transition()
         .duration(200)
         .style("opacity", 1);
+
+    // Accessibility: screen readers announce the same text (Week 8)
+    announceToScreenReader(lines.join(". "));
 };
 
 // Hide the tooltip and move it out of the way

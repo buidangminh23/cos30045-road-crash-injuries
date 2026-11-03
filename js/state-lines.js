@@ -35,6 +35,12 @@ const drawStateLines = (data) => {
         .append("svg")
             .attr("viewBox", `0 0 ${storyWidth} ${storyHeight}`);
 
+    // Accessibility: first and last value of every state (Week 8)
+    describeChart(svg, "state-lines",
+        "Line chart: road crash hospitalisations by state or territory of residence, 2011 to 2021",
+        "Queensland grew fastest of the large states. "
+        + series.map(s => `${s.name}: ${formatNumber(s.values[0].hospitalisations)} in 2011, ${formatNumber(s.values[s.values.length - 1].hospitalisations)} in 2021.`).join(" "));
+
     const innerChart = svg
         .append("g")
             .attr("transform", `translate(${labelledMargin.left}, ${labelledMargin.top})`);
@@ -175,31 +181,38 @@ const drawStateLines = (data) => {
             .duration(duration)
                 .attr("y", d => d.labelY);
 
-        // Tooltip on the points of the selected state
-        pointsGroup.selectAll(".state-point")
-            .on("mouseenter", (e, d) => {
-                const first = selected.values[0].hospitalisations;
-                const change = ((d.hospitalisations - first) / first) * 100;
-                const lines = [
-                    `${selected.name}, ${d.year}`,
-                    `${formatNumber(d.hospitalisations)} hospitalisations`,
-                    `${change >= 0 ? "+" : ""}${change.toFixed(0)}% since 2011`
-                ];
-                if (d.state === "NSW" && d.year >= 2017) {
-                    lines.push("NSW emergency-only cases not counted");
-                }
-                if (d.state === "Vic" && d.year === 2011) {
-                    lines.push("Still counts Vic emergency-only cases");
-                }
-                if (d.state === "Vic" && d.year === 2012) {
-                    lines.push("Vic emergency-only cases dropped from July");
-                }
-                showChartTooltip(stateTooltip, lines, xScaleState(d.year), yScaleState(d.hospitalisations), innerW, labelledMargin);
-            })
-            .on("mouseleave", () => hideChartTooltip(stateTooltip));
+        // Tooltip on the points of the selected state, for mouse, touch and keyboard (Week 8)
+        const changeSince2011 = d => {
+            const first = selected.values[0].hospitalisations;
+            const change = ((d.hospitalisations - first) / first) * 100;
+            return `${change >= 0 ? "+" : ""}${change.toFixed(0)}% since 2011`;
+        };
+        const showStateTooltip = (e, d) => {
+            const lines = [
+                `${selected.name}, ${d.year}`,
+                `${formatNumber(d.hospitalisations)} hospitalisations`,
+                changeSince2011(d)
+            ];
+            if (d.state === "NSW" && d.year >= 2017) {
+                lines.push("NSW emergency-only cases not counted");
+            }
+            if (d.state === "Vic" && d.year === 2011) {
+                lines.push("Still counts Vic emergency-only cases");
+            }
+            if (d.state === "Vic" && d.year === 2012) {
+                lines.push("Vic emergency-only cases dropped from July");
+            }
+            showChartTooltip(stateTooltip, lines, xScaleState(d.year), yScaleState(d.hospitalisations), innerW, labelledMargin);
+        };
+        makeMarksAccessible(
+            pointsGroup.selectAll(".state-point"),
+            d => `${selected.name}, ${d.year}: ${formatNumber(d.hospitalisations)} hospitalisations, ${changeSince2011(d)}`,
+            showStateTooltip,
+            () => hideChartTooltip(stateTooltip)
+        );
         hideChartTooltip(stateTooltip);
     };
 
     updateStateLines("Qld", false);
-    createFilterButtons("filters-state", filtersState, selectedId => updateStateLines(selectedId, true));
+    createFilterButtons("filters-state", filtersState, "Choose a state or territory", selectedId => updateStateLines(selectedId, true));
 };

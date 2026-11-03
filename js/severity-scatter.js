@@ -25,6 +25,12 @@ const drawSeverityScatter = (data) => {
         .append("svg")
             .attr("viewBox", `0 0 ${storyWidth} ${storyHeight}`);
 
+    // Accessibility: every road user with its two values (Week 8)
+    describeChart(svg, "severity-scatter",
+        "Scatter plot: hospitalisations and bed days per case for each road user, 2016 to 2021",
+        `The average stay for all traffic cases is ${allTrafficBedDays} days. Pedestrians stay longest. `
+        + data.map(d => `${d.roadUser}: ${formatNumber(d.hospitalisations)} hospitalisations, ${d.bedDaysPerCase} bed days per case.`).join(" "));
+
     const innerChart = svg
         .append("g")
             .attr("transform", `translate(${storyMargin.left}, ${storyMargin.top})`);
@@ -153,17 +159,21 @@ const drawSeverityScatter = (data) => {
 
     const severityTooltip = createChartTooltip(innerChart);
 
-    innerChart.selectAll(".severity-point")
-        .on("mouseenter", (e, d) => {
-            const lines = [
-                d.roadUser,
-                `${formatNumber(d.hospitalisations)} hospitalisations`,
-                `${d.bedDaysPerCase} bed days per case`
-            ];
-            if (d.cases < fewCasesLimit) {
-                lines.push(`Based on few cases (${formatNumber(d.cases)})`);
-            }
-            showChartTooltip(severityTooltip, lines, xScaleSeverity(d.hospitalisations), yScaleSeverity(d.bedDaysPerCase), innerW);
-        })
-        .on("mouseleave", () => hideChartTooltip(severityTooltip));
+    const showSeverityTooltip = (e, d) => {
+        const lines = [
+            d.roadUser,
+            `${formatNumber(d.hospitalisations)} hospitalisations`,
+            `${d.bedDaysPerCase} bed days per case`
+        ];
+        if (d.cases < fewCasesLimit) {
+            lines.push(`Based on few cases (${formatNumber(d.cases)})`);
+        }
+        showChartTooltip(severityTooltip, lines, xScaleSeverity(d.hospitalisations), yScaleSeverity(d.bedDaysPerCase), innerW);
+    };
+    makeMarksAccessible(
+        innerChart.selectAll(".severity-point"),
+        d => `${d.roadUser}: ${formatNumber(d.hospitalisations)} hospitalisations, ${d.bedDaysPerCase} bed days per case`,
+        showSeverityTooltip,
+        () => hideChartTooltip(severityTooltip)
+    );
 };

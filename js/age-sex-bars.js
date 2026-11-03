@@ -46,6 +46,12 @@ const drawAgeSexBars = (data) => {
         .append("svg")
             .attr("viewBox", `0 0 ${storyWidth} ${storyHeight}`);
 
+    // Accessibility: both measures for every bar, so the description fits either view (Week 8)
+    describeChart(svg, "age-sex-bars",
+        "Grouped bar chart: road crash hospitalisations and bed days per case by age group and sex",
+        "Males are 65% of hospitalisations. At 75 and over, females and males are almost equal, and this age group stays longest. "
+        + data.map(d => `${d.sex}, ${d.ageGroup}: ${formatNumber(d.hospitalisations)} hospitalisations, ${d.bedDaysPerCase.toFixed(2)} bed days per case.`).join(" "));
+
     const innerChart = svg
         .append("g")
             .attr("transform", `translate(${storyMargin.left}, ${storyMargin.top})`);
@@ -161,8 +167,9 @@ const drawAgeSexBars = (data) => {
             .call(d3.axisLeft(yScaleAge).ticks(5).tickFormat(selectedMeasure === "hospitalisations" ? formatNumber : d3.format("d")));
         yAxisLabel.text(measure.axisLabel);
 
-        // Bars of the sex that is not selected shrink to zero height
+        // Bars of the sex that is not selected shrink to zero height and cannot be reached with the Tab key
         bars
+            .attr("tabindex", d => selectedSex === "Both" || d.sex === selectedSex ? 0 : -1)
             .transition()
             .duration(duration)
             .ease(d3.easeCubicInOut)
@@ -201,28 +208,32 @@ const drawAgeSexBars = (data) => {
         hideChartTooltip(ageTooltip);
     };
 
-    bars
-        .on("mouseenter", (e, d) => {
-            // Hidden bars of the other sex do not show a tooltip
-            if (selectedSex !== "Both" && d.sex !== selectedSex) {
-                return;
-            }
-            const lines = [
-                `${d.sex}, aged ${d.ageGroup}`,
-                `${formatNumber(d.hospitalisations)} hospitalisations (2011-2021)`,
-                `${d.bedDaysPerCase.toFixed(2)} bed days per case (2016-2021)`
-            ];
-            const measure = ageMeasures[selectedMeasure];
-            showChartTooltip(ageTooltip, lines, xScaleAge(d.ageGroup) + xScaleSex(d.sex) + xScaleSex.bandwidth() / 2, yScaleAge(d[measure.column]), innerW);
-        })
-        .on("mouseleave", () => hideChartTooltip(ageTooltip));
+    const showAgeTooltip = (e, d) => {
+        // Hidden bars of the other sex do not show a tooltip
+        if (selectedSex !== "Both" && d.sex !== selectedSex) {
+            return;
+        }
+        const lines = [
+            `${d.sex}, aged ${d.ageGroup}`,
+            `${formatNumber(d.hospitalisations)} hospitalisations (2011-2021)`,
+            `${d.bedDaysPerCase.toFixed(2)} bed days per case (2016-2021)`
+        ];
+        const measure = ageMeasures[selectedMeasure];
+        showChartTooltip(ageTooltip, lines, xScaleAge(d.ageGroup) + xScaleSex(d.sex) + xScaleSex.bandwidth() / 2, yScaleAge(d[measure.column]), innerW);
+    };
+    makeMarksAccessible(
+        bars,
+        d => `${d.sex}, aged ${d.ageGroup}: ${formatNumber(d.hospitalisations)} hospitalisations, ${d.bedDaysPerCase.toFixed(2)} bed days per case`,
+        showAgeTooltip,
+        () => hideChartTooltip(ageTooltip)
+    );
 
     updateAgeBars(false);
-    createFilterButtons("filters-age-measure", filtersAgeMeasure, id => {
+    createFilterButtons("filters-age-measure", filtersAgeMeasure, "Choose the measure", id => {
         selectedMeasure = id;
         updateAgeBars(true);
     });
-    createFilterButtons("filters-age-sex", filtersAgeSex, id => {
+    createFilterButtons("filters-age-sex", filtersAgeSex, "Choose the sex", id => {
         selectedSex = id;
         updateAgeBars(true);
     });

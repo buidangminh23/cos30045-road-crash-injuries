@@ -20,6 +20,12 @@ const drawMonthlyHistogram = (data) => {
         .append("svg")
             .attr("viewBox", `0 0 ${storyWidth} ${storyHeight}`);
 
+    // Accessibility: describe each bin, as in the Week 8 generateDescription example
+    describeChart(svg, "monthly-histogram",
+        "Histogram: number of months by monthly road crash hospitalisations, 2011 to 2021",
+        "Most of the 132 months had between 2,700 and 3,500 hospitalisations. April 2020 is the only month below 2,500. "
+        + bins.filter(bin => bin.length > 0).map(bin => `${formatNumber(bin.x0)} to ${formatNumber(bin.x1 - 1)}: ${bin.length} ${bin.length === 1 ? "month" : "months"}.`).join(" "));
+
     const innerChart = svg
         .append("g")
             .attr("transform", `translate(${storyMargin.left}, ${storyMargin.top})`);
@@ -93,14 +99,19 @@ const drawMonthlyHistogram = (data) => {
 
     const monthsTooltip = createChartTooltip(innerChart);
 
-    innerChart.selectAll(".month-bar")
-        .on("mouseenter", (e, d) => {
-            const lines = [`${formatNumber(d.x0)} to ${formatNumber(d.x1 - 1)} a month`, `${d.length} ${d.length === 1 ? "month" : "months"}`];
-            // Name the months when there are only a few of them
-            if (d.length > 0 && d.length <= 3) {
-                lines.push(d.map(m => `${m.month} ${m.year}`).join(", "));
-            }
-            showChartTooltip(monthsTooltip, lines, (xScaleMonths(d.x0) + xScaleMonths(d.x1)) / 2, yScaleMonths(d.length), innerW);
-        })
-        .on("mouseleave", () => hideChartTooltip(monthsTooltip));
+    const showMonthsTooltip = (e, d) => {
+        const lines = [`${formatNumber(d.x0)} to ${formatNumber(d.x1 - 1)} a month`, `${d.length} ${d.length === 1 ? "month" : "months"}`];
+        // Name the months when there are only a few of them
+        if (d.length > 0 && d.length <= 3) {
+            lines.push(d.map(m => `${m.month} ${m.year}`).join(", "));
+        }
+        showChartTooltip(monthsTooltip, lines, (xScaleMonths(d.x0) + xScaleMonths(d.x1)) / 2, yScaleMonths(d.length), innerW);
+    };
+    // Empty bins have no bar to focus, so only bins with months are made accessible
+    makeMarksAccessible(
+        innerChart.selectAll(".month-bar").filter(d => d.length > 0),
+        d => `${formatNumber(d.x0)} to ${formatNumber(d.x1 - 1)} hospitalisations: ${d.length} ${d.length === 1 ? "month" : "months"}`,
+        showMonthsTooltip,
+        () => hideChartTooltip(monthsTooltip)
+    );
 };
