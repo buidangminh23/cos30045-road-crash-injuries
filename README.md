@@ -13,15 +13,40 @@ COS30045 Data Visualisation team project (2026). An interactive D3 data story bu
 
 | Path | Contents |
 |---|---|
-| `index.html` | Website entry point |
-| `css/base.css` | Page layout, text and filter buttons |
-| `css/visualisation.css` | Chart container, axes, annotations and tooltip |
-| `js/shared-constants.js` | Chart size, margins, colours, scales, filters and tooltip size |
-| `js/line-chart.js` | Road user trend line chart |
-| `js/interactions.js` | Filter buttons and tooltip |
-| `js/load-data.js` | Loads the CSV and calls the chart functions (loaded last) |
-| `data/` | CSV files used by the website |
-| `knime/` | KNIME workflow `Group5_RoadCrashInjuries_DataProcessing.knwf` with the three BITRE workbooks and its CSV outputs |
+The code is split by role: data loading, one file per chart, interaction and accessibility helpers, and presentation (CSS).
+
+| Path | Role | Contents |
+|---|---|---|
+| `index.html` | Presentation | One scrolling page: introduction, Q1 to Q5, conclusion, about the data |
+| `css/base.css` | Presentation | Page layout, text, key numbers, buttons, focus outlines, sticky header |
+| `css/visualisation.css` | Presentation | Chart containers, axes, labels, focus styles, phone colour key |
+| `js/shared-constants.js` | Shared | Chart size and margins, palette, road user colours, formats, text size scale |
+| `js/load-data.js` | Data | One `d3.csv()` call per file with a row conversion; shows a message if a file cannot be loaded (loaded last) |
+| `js/national-trend.js` | Visualisation | C1 line chart (Q1) |
+| `js/monthly-histogram.js` | Visualisation | C1b histogram (Q1) |
+| `js/road-user-stack.js` | Visualisation | C2 stacked bar chart with group filter (Q2) |
+| `js/severity-scatter.js` | Visualisation | C3 scatter plot (Q3) |
+| `js/age-sex-bars.js` | Visualisation | C4 grouped bar chart with measure and sex buttons (Q4) |
+| `js/state-lines.js` | Visualisation | C5 state and territory line chart (Q5) |
+| `js/interactions.js` | Interaction | Reusable filter buttons (Week 6 pattern, with ARIA from Week 8) |
+| `js/tooltip.js` | Interaction | Shared multi-line SVG tooltip |
+| `js/direct-labels.js` | Visualisation | Moves direct labels apart; HTML colour key for phones |
+| `js/accessibility.js` | Accessibility | SVG title and description, keyboard access to marks, screen reader announcements |
+| `js/resize.js` | Accessibility | Resizes chart text with the window width |
+| `data/` | Data | CSV files used by the website |
+| `knime/` | Data | KNIME workflow `Group5_RoadCrashInjuries_DataProcessing.knwf` with the three BITRE workbooks and its CSV outputs |
+
+## Accessibility features
+
+Following the Week 8 Chart Accessibility lecture (Dufour & Meeks, 2024):
+
+- Semantic page structure (`header`, `nav`, `main`, `section`, `footer`, one `h1`).
+- Every SVG has `role="img"`, a `<title>` and a `<desc>` built from the data.
+- Button sets are `role="group"` with an `aria-label`; buttons use `type="button"` and `aria-pressed`.
+- Every data mark can be reached with Tab, the arrow keys move between marks, and focus shows the same tooltip as hover; a live region announces the tooltip text.
+- Colour is never the only cue: direct labels, keys, annotations and hollow points.
+- Page text is at least 16px and chart text at least 12px at a 360px window (measured 12.2px).
+- Interaction cues in the introduction; visible focus outlines.
 
 ## Data
 
@@ -31,7 +56,7 @@ All data processing is done in the KNIME workflow `knime/Group5_RoadCrashInjurie
 
 | File | Rows | Columns | Used by |
 |---|---|---|---|
-| `data/road-user-trend.csv` | 143 | `year`, `roadUser`, `hospitalisations` | Road user trend line chart (current page) |
+| `data/road-user-trend.csv` | 143 | `year`, `roadUser`, `hospitalisations` | Week 6 road user line chart (replaced by C2; kept as a KNIME output) |
 | `data/c1_national_by_year.csv` | 11 | `year`, `hospitalisations`, `is_series_break` | C1 national trend |
 | `data/c1b_national_by_month.csv` | 132 | `year`, `month_num`, `month`, `hospitalisations`, `date` | C1b monthly histogram |
 | `data/c2_road_user_group_by_year.csv` | 55 | `year`, `road_user_group`, `group_order`, `hospitalisations`, `national_total`, `share_pct` | C2 stacked bar |
@@ -40,7 +65,7 @@ All data processing is done in the KNIME workflow `knime/Group5_RoadCrashInjurie
 | `data/c5_state_by_year.csv` | 88 | `year`, `state`, `hospitalisations`, `bed_days`, `is_series_break`, `state_name` | C5 state trend |
 | `data/c5b_first_nations_by_year.csv` | 11 | `year`, `first_nations`, `non_indigenous`, `national_total`, `status_not_stated`, `first_nations_share_pct` | Q5 text |
 
-The C1 to C5 files are ready for the charts of later weeks; the current page reads only `road-user-trend.csv`. `is_series_break` holds the text `true` or `false`.
+The page reads the C1 to C5 files; the First Nations file is used for the numbers in the Q5 text. `is_series_break` holds the text `true` or `false`.
 
 KNIME nodes for `road-user-trend.csv` (all branches start from the cleaned national trunk, nodes 1 to 23):
 
@@ -64,7 +89,7 @@ The output has 143 rows (13 groups x 11 years), and the `All road users` totals 
 
 ## Run locally
 
-Open the folder with a local web server (for example VS Code Live Server), because D3 cannot load CSV files from `file://`.
+Open the folder with a local web server (for example VS Code Live Server, or `npx http-server`), because D3 cannot load CSV files from `file://`.
 
 ## Hosting
 
@@ -73,3 +98,13 @@ The website is hosted on GitHub Pages and deployed from `main`: https://buidangm
 ## Generative AI use
 
 Claude Opus 5.5 (Anthropic) was used to write the week 6 version of the website: the file structure, the line chart, the filter buttons, the tooltip and the page text. Generated code is marked with a comment in each JavaScript file, and the commits that contain it say so. The KNIME workflow in `knime/` was also built and executed with Claude Opus 5.5 (Anthropic) from the team's node-by-node build guide, and its node results and CSV files were checked against an independent Python version of the same steps. The team must be able to explain every part of the code in the face-to-face interviews.
+
+On 3 November 2026 Claude Opus 5.5 also wrote the final version of the website (pull requests #5 to #12): the six charts C1 to C5, the shared tooltip, the filter buttons, the Week 8 accessibility features, the responsive text, and the page text of Q1 to Q5, the conclusion and About the data. It followed the chart designs in the team's Design Book (Tables 3.1 to 3.6) and was told to use only techniques taught in the unit. Every new file starts with a "Generated with GenAI" comment that names the unit exercise or lecture it follows, and every commit body says "Largely generated with GenAI (Claude Opus 5.5)". The numbers in the page text were checked against the CSV files before they were written.
+
+### Summary of prompts
+
+Prompts were written in Vietnamese; English translations:
+
+1. Week 6 (20 October 2026): build one feature for this week only, using only knowledge from weeks 1 to 6: a road user trend line chart with filter buttons and a tooltip.
+2. KNIME (27 October 2026): build the complete KNIME workflow from the team's build guide, so the data can be used on the website.
+3. Final website (3 November 2026): "Complete the Project Design Book and Website in full, using only the unit's knowledge and nothing more advanced." The team then chose to build every chart now, with one pull request per chart.
