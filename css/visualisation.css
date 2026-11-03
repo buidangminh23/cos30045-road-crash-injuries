@@ -28,8 +28,14 @@
 .month-bar,
 .stack-bar,
 .severity-point,
-.age-bar {
+.age-bar,
+.state-point {
     cursor: pointer;
+}
+
+/* Grey context lines cannot be hovered; only the selected state has points */
+.state-line {
+    pointer-events: none;
 }
 
 /* Colour key of the scatter plot */

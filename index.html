@@ -18,6 +18,7 @@
                 <li><a href="#road-users">Q2 Road users</a></li>
                 <li><a href="#severity">Q3 Severity</a></li>
                 <li><a href="#age-sex">Q4 Age and sex</a></li>
+                <li><a href="#states">Q5 States</a></li>
             </ul>
         </nav>
     </header>
@@ -81,6 +82,17 @@
             <p class="chart-note">Counts of hospitalisations, not rates per person. The age groups are not the same width: 40-64 covers 25 years, 17-25 only 9 years, so wider groups have more people in them. Hospitalisations cover 2011-2021; bed days per case cover 2016-2021.</p>
             <p class="takeaway"><strong>What this means:</strong> young men are hospitalised most often, but older road users, women as well as men, have the longest and most serious stays.</p>
         </section>
+
+        <section id="states">
+            <h2>Q5: Where do injured people live, and how have states changed?</h2>
+            <p>The national rise is not the same everywhere. Queensland's hospitalisations grew by 65%, from 6,322 in 2011 to 10,447 in 2021. Tasmania (+63%), the Northern Territory (+56%) and the ACT (+38%) also grew quickly, but from small numbers. New South Wales fell by 15%, partly because from 2017 its hospitals stopped counting patients treated only in an emergency department. Select your own state to see its trend on its own scale.</p>
+            <h3 class="chart-title">Queensland grew fastest of the large states: +65%</h3>
+            <div id="filters-state" class="filters"></div>
+            <div id="state-lines" class="responsive-svg-container"></div>
+            <p class="chart-note">Counts by the state or territory where the injured person lives, not where the crash happened. Counts are not rates: New South Wales has about 16 times as many hospitalisations as the Northern Territory mainly because far more people live there. When one state is selected, the y axis starts at zero and is rescaled to that state, and states that would not fit are hidden. The states add up to 470 to 997 fewer than the national total each year, because some records have no state.</p>
+            <p>Hospitalisations of First Nations people rose from 1,167 in 2011 to 2,220 in 2021. Over the same years the number of records with Indigenous status not stated fell from 869 to 530, so better recording in hospitals explains part of this rise. These are counts, not rates, and they do not measure risk.</p>
+            <p class="takeaway"><strong>What this means:</strong> where you live changes the trend you see. Fast growth in Queensland and the territories shows that road safety gains are not shared across Australia.</p>
+        </section>
     </main>
 
     <footer>
@@ -101,6 +113,7 @@
     <script src="js/road-user-stack.js"></script>
     <script src="js/severity-scatter.js"></script>
     <script src="js/age-sex-bars.js"></script>
+    <script src="js/state-lines.js"></script>
     <script src="js/load-data.js"></script>
 </body>
 </html>
