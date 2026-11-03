@@ -27,16 +27,11 @@ d3.csv("data/c1b_national_by_month.csv", d => ({
     .then(data => drawMonthlyHistogram(data))
     .catch(error => showLoadError("monthly-histogram", error));
 
-// Q2: hospitalisations per road user and year (week 6 line chart)
-d3.csv("data/road-user-trend.csv", d => ({
-    year: +d.year,                          // Convert year to a number
-    roadUser: d.roadUser,
-    hospitalisations: +d.hospitalisations   // Convert the count to a number
+// Q2: hospitalisations per road user group and year (C2)
+d3.csv("data/c2_road_user_group_by_year.csv", d => ({
+    year: +d.year,
+    group: d.road_user_group,
+    hospitalisations: +d.hospitalisations
 }))
-    .then(data => {
-        drawLineChart(data);
-        populateFilters(data);
-        createTooltip();
-        handleMouseEvents();
-    })
-    .catch(error => showLoadError("line-chart", error));
+    .then(data => drawRoadUserStack(data))
+    .catch(error => showLoadError("road-user-stack", error));

@@ -44,11 +44,14 @@
         </section>
 
         <section id="road-users">
-            <h2>Q2: Who is being hurt on Australian roads?</h2>
-            <p>Car drivers are the largest group, with 13,327 hospitalisations in 2021 (34% of the total). The fastest growth is among cyclists: their hospitalisations rose by 51% between 2011 and 2021, from 5,391 to 8,163. Over the same period, pedestrian hospitalisations fell by 15%. In 2020, when COVID-19 restrictions reduced travel, 10 of the 12 road user groups fell, while cyclist hospitalisations rose by 14% (from 7,302 to 8,332).</p>
-            <div id="filters_road_user" class="filters"></div>
-            <div id="line-chart" class="responsive-svg-container"></div>
-            <p class="chart-note">These are counts of hospitalisations, not rates per person. Australia's population also grew between 2011 and 2021, so a higher count does not always mean a higher risk. The dashed lines mark events that affect the trend: from June 2017 New South Wales hospitals stopped counting patients treated only in an emergency department or urgent care centre as admissions, which lowers counts from 2017 onwards, and COVID-19 restrictions reduced travel in 2020. Victoria made a similar change from July 2012.</p>
+            <h2>Q2: Which road users are hospitalised, and which groups are growing?</h2>
+            <p>The rise is not shared equally. Car occupants (drivers and passengers) are the largest group, with 18,539 hospitalisations in 2021, almost half of the total. The fastest growth is among cyclists: their hospitalisations rose by 51%, from 5,391 in 2011 to 8,163 in 2021. In 2020, when COVID-19 restrictions reduced travel, every other group fell, but cyclist hospitalisations rose by 14%. Pedestrian hospitalisations fell by 15% over the decade, yet Q3 shows that pedestrians have the most serious injuries.</p>
+            <p>Use the buttons to follow one group on its own scale.</p>
+            <h3 class="chart-title">Cyclists grew fastest: +51%</h3>
+            <div id="filters-road-user" class="filters"></div>
+            <div id="road-user-stack" class="responsive-svg-container"></div>
+            <p class="chart-note">Counts of hospitalisations, not rates per person. Australia's population and the number of people cycling also changed between 2011 and 2021, so a higher count does not always mean a higher risk. Other road users groups six small categories, such as bus, truck and van occupants. When one group is selected, the y axis starts at zero and is rescaled to that group.</p>
+            <p class="takeaway"><strong>What this means:</strong> vulnerable road users carry a growing share of the harm. Cyclists went from 16% of hospitalisations in 2011 to 21% in 2021.</p>
         </section>
     </main>
 
@@ -65,8 +68,9 @@
     <script src="js/tooltip.js"></script>
     <script src="js/national-trend.js"></script>
     <script src="js/monthly-histogram.js"></script>
-    <script src="js/line-chart.js"></script>
+    <script src="js/direct-labels.js"></script>
     <script src="js/interactions.js"></script>
+    <script src="js/road-user-stack.js"></script>
     <script src="js/load-data.js"></script>
 </body>
 </html>

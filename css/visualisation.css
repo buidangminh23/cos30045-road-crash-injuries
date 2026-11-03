@@ -23,15 +23,17 @@
     font-size: 13px;
 }
 
-/* Circles can be hovered to show the tooltip */
-#line-chart circle {
+/* Marks of the story charts that show a tooltip */
+.trend-point,
+.month-bar,
+.stack-bar {
     cursor: pointer;
 }
 
-/* Marks of the story charts that show a tooltip */
-.trend-point,
-.month-bar {
-    cursor: pointer;
+/* Labels placed next to the marks instead of a legend */
+.direct-label {
+    font-size: 14px;
+    font-weight: 700;
 }
 
 /* Grey bands behind the years with a recording change */
