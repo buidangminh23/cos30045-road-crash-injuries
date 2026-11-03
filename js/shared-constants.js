@@ -11,7 +11,7 @@ const labelledMargin = { top: 70, right: 140, bottom: 70, left: 100 };
 
 // Colours from the Design Book palette (Figure 3.5)
 const storyColor = "#222222";      // the mark that carries the story
-const contextColor = "#9e9e9e";    // marks that give context
+const contextColor = "#858585";    // marks that give context (3.7:1 on white, at least 3:1 for graphics in WCAG)
 const bandColor = "#ececec";       // years affected by a recording change
 const referenceColor = "#555555";  // dashed reference lines and their labels
 
@@ -26,7 +26,7 @@ const roadUserLabels = {
 };
 const roadUserColor = d3.scaleOrdinal()
     .domain(roadUserGroups)
-    .range(["#56B4E9", "#E69F00", "#009E73", "#D55E00", "#999999"]);
+    .range(["#56B4E9", "#E69F00", "#009E73", "#D55E00", "#8C8C8C"]);   // Other road users darkened from #999999 to 3.4:1
 
 // Filter buttons for the road user stack (Week 6 filter pattern)
 const filtersRoadUser = [

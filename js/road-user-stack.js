@@ -120,6 +120,8 @@ const drawRoadUserStack = (data) => {
             .join(
                 enter => enter.append("rect")
                     .attr("class", "stack-bar")
+                    .attr("stroke", "white")          // a thin white line separates neighbouring segments
+                    .attr("stroke-width", 1)
                     .attr("x", d => xScaleStack(d.year))
                     .attr("width", xScaleStack.bandwidth())
                     .attr("y", innerH)
