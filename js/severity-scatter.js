@@ -140,8 +140,7 @@ const drawSeverityScatter = (data) => {
         .selectAll(".key-row")
         .data(keyItems)
         .join("g")
-            .attr("class", "key-row")
-            .attr("transform", (d, i) => `translate(0, ${i * 20})`);
+            .attr("class", "key-row");
     keyRows
         .append("circle")
             .attr("cx", 6)
@@ -176,4 +175,14 @@ const drawSeverityScatter = (data) => {
         showSeverityTooltip,
         () => hideChartTooltip(severityTooltip)
     );
+
+    // Key under the chart for narrow screens
+    createHtmlKey("severity-scatter", keyItems);
+
+    // Rows of the SVG key are spaced by the text size; the key moves left as the text grows
+    chartResizeHandlers.push(() => {
+        keyRows.attr("transform", (d, i) => `translate(0, ${i * chartFontSize * 1.6})`);
+        key.attr("transform", `translate(${innerW - chartFontSize * 15}, 0)`);
+    });
+    resizeCharts();
 };

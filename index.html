@@ -19,6 +19,8 @@
                 <li><a href="#severity">Q3 Severity</a></li>
                 <li><a href="#age-sex">Q4 Age and sex</a></li>
                 <li><a href="#states">Q5 States</a></li>
+                <li><a href="#conclusion">Conclusion</a></li>
+                <li><a href="#about-data">About the data</a></li>
             </ul>
         </nav>
     </header>
@@ -70,7 +72,7 @@
 
         <section id="age-sex">
             <h2>Q4: How do age and sex shape who is hurt?</h2>
-            <p>Males make up 65% of road crash hospitalisations, and the gap is widest for young adults: among people aged 17 to 25, almost twice as many males as females were hospitalised. The pattern changes with age. At 75 and over, as many women as men are hospitalised (12,634 and 12,571). Switch to bed days per case to see the second half of the story: older people stay longest. People aged 75 and over stay about 11 days, twice the average of 5.23 days.</p>
+            <p>Behind each road user group are people of every age. Males make up 65% of road crash hospitalisations, and the gap is widest for young adults: among people aged 17 to 25, almost twice as many males as females were hospitalised. The pattern changes with age. At 75 and over, as many women as men are hospitalised (12,634 and 12,571). Switch to bed days per case to see the second half of the story: older people stay longest. People aged 75 and over stay about 11 days, twice the average of 5.23 days.</p>
             <h3 class="chart-title">Men are hurt more often, but people aged 75+ stay longest</h3>
             <div class="filter-row">
                 <span class="filter-row-label">Show:</span>
@@ -95,6 +97,26 @@
             <p>Hospitalisations of First Nations people rose from 1,167 in 2011 to 2,220 in 2021. Over the same years the number of records with Indigenous status not stated fell from 869 to 530, so better recording in hospitals explains part of this rise. These are counts, not rates, and they do not measure risk.</p>
             <p class="takeaway"><strong>What this means:</strong> where you live changes the trend you see. Fast growth in Queensland and the territories shows that road safety gains are not shared across Australia.</p>
         </section>
+
+        <section id="conclusion">
+            <h2>Conclusion: what the five questions show</h2>
+            <ul>
+                <li><strong>Q1:</strong> road crash hospitalisations did not fall between 2011 and 2021; they rose by 16%, and the only clear fall, in 2020, came from less travel.</li>
+                <li><strong>Q2:</strong> car occupants are the largest group, but cyclist hospitalisations grew fastest (+51%).</li>
+                <li><strong>Q3:</strong> pedestrians have the most serious injuries, staying 10.46 days per case, twice the average.</li>
+                <li><strong>Q4:</strong> young men are hospitalised most often, while people aged 75 and over, women as much as men, stay longest.</li>
+                <li><strong>Q5:</strong> the trend differs by state; Queensland grew by 65%, while the New South Wales fall is partly a recording change.</li>
+            </ul>
+            <p class="takeaway"><strong>What this means for you:</strong> take extra care around cyclists, pedestrians and older road users. They carry a large and growing share of the harm, and their injuries keep them in hospital longest.</p>
+        </section>
+
+        <section id="about-data">
+            <h2>About the data</h2>
+            <p><strong>Source.</strong> Bureau of Infrastructure and Transport Research Economics (BITRE), Hospitalised Injury Data, national, state and territory, and First Nations workbooks, 2011-2021 (published September 2023). Only road traffic crashes are shown.</p>
+            <p><strong>Processing.</strong> The team cleaned, filtered and aggregated the raw records in a KNIME workflow (Group5_RoadCrashInjuries_DataProcessing). Every yearly total was checked against BITRE's own published tables. The CSV files used by these charts are the workflow's outputs.</p>
+            <p><strong>Limitations.</strong> The data are counts of hospitalisations, not rates per person, so they do not measure risk. Victoria (from July 2012) and New South Wales (from June 2017) changed how they count patients treated only in an emergency department, which lowers later counts. Bed days per case are shown only for 2016-2021, after a rule change in July 2015. Age groups have different widths.</p>
+            <p><strong>Privacy and ethics.</strong> Hospital records are sensitive personal information. This page shows only the aggregated counts that BITRE has already published, so no person can be identified. First Nations counts are reported as counts with their recording caveat, not as a measure of risk.</p>
+        </section>
     </main>
 
     <footer>
@@ -112,6 +134,7 @@
     <script src="js/national-trend.js"></script>
     <script src="js/monthly-histogram.js"></script>
     <script src="js/direct-labels.js"></script>
+    <script src="js/resize.js"></script>
     <script src="js/interactions.js"></script>
     <script src="js/road-user-stack.js"></script>
     <script src="js/severity-scatter.js"></script>

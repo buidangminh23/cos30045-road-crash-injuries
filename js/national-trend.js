@@ -154,4 +154,7 @@ const drawNationalTrend = (data) => {
         showTrendTooltip,
         () => hideChartTooltip(trendTooltip)
     );
+
+    // Set the text size for the current window width (Week 8 resize.js)
+    resizeCharts();
 };

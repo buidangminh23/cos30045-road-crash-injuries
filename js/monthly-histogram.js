@@ -76,26 +76,29 @@ const drawMonthlyHistogram = (data) => {
             .attr("y", storyHeight - 8)
             .attr("text-anchor", "end");
 
-    // Annotation above the lowest bin
+    // Annotation in the empty top left corner, with a line down to the lowest bin
     const aprilBin = bins[0];
     const labelX = xScaleMonths(aprilBin.x0) + 8;
     const aprilLabel = innerChart
         .append("text")
             .attr("class", "annotation-label")
             .attr("x", labelX)
-            .attr("y", yScaleMonths(aprilBin.length) - 60)
+            .attr("y", 10)
             .attr("fill", storyColor);
     aprilLabel.append("tspan").text("April 2020: 2,357").style("font-weight", 700);
     aprilLabel.append("tspan").text("the only month below 2,500").attr("x", labelX).attr("dy", "1.2em");
 
-    // A short line from the label down to the bar
-    innerChart
+    const aprilLine = innerChart
         .append("line")
             .attr("x1", labelX)
             .attr("x2", labelX)
-            .attr("y1", yScaleMonths(aprilBin.length) - 28)
             .attr("y2", yScaleMonths(aprilBin.length) - 4)
             .attr("stroke", storyColor);
+
+    // The line starts below the two lines of text, which grow with the text size
+    chartResizeHandlers.push(() => {
+        aprilLine.attr("y1", 10 + chartFontSize * 1.8);
+    });
 
     const monthsTooltip = createChartTooltip(innerChart);
 
@@ -114,4 +117,6 @@ const drawMonthlyHistogram = (data) => {
         showMonthsTooltip,
         () => hideChartTooltip(monthsTooltip)
     );
+
+    resizeCharts();
 };

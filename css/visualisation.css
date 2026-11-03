@@ -67,6 +67,47 @@
     pointer-events: none;
 }
 
+/* Colour key in HTML, shown under a chart only on narrow screens */
+.html-key {
+    display: none;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.html-key li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.html-key-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid;
+    border-radius: 3px;
+}
+
+.html-key-swatch.hollow {
+    border-radius: 50%;
+}
+
+/* On narrow screens long SVG labels and keys would be cut off, so the HTML key replaces them */
+@media (max-width: 600px) {
+    .html-key {
+        display: flex;
+    }
+
+    #road-user-stack .direct-label,
+    .chart-key,
+    .wide-screen-only {
+        display: none;
+    }
+}
+
 /* Message shown when the data cannot be loaded */
 .error-message {
     padding: 12px;

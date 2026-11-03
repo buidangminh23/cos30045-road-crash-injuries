@@ -128,8 +128,7 @@ const drawAgeSexBars = (data) => {
         .selectAll(".key-row")
         .data(sexes)
         .join("g")
-            .attr("class", "key-row")
-            .attr("transform", (d, i) => `translate(${i * 80}, 0)`);
+            .attr("class", "key-row");
     keyRows
         .append("rect")
             .attr("y", -7)
@@ -143,10 +142,11 @@ const drawAgeSexBars = (data) => {
             .attr("x", 20)
             .attr("dominant-baseline", "middle");
 
-    // Annotation on the 75+ pair; its text depends on the measure
+    // Annotation on the 75+ pair; its text depends on the measure.
+    // On a phone it would cover the 40-64 bars, so CSS hides it there and the text above the chart says the same
     const annotation = innerChart
         .append("text")
-            .attr("class", "annotation-label")
+            .attr("class", "annotation-label wide-screen-only")
             .attr("text-anchor", "end")
             .attr("fill", storyColor);
 
@@ -237,4 +237,14 @@ const drawAgeSexBars = (data) => {
         selectedSex = id;
         updateAgeBars(true);
     });
+
+    // Key under the chart for narrow screens
+    createHtmlKey("age-sex-bars", sexes.map(sex => ({ label: sex, color: sexColor(sex) })));
+
+    // The two key items are spaced by the text size
+    chartResizeHandlers.push(() => {
+        keyRows.attr("transform", (d, i) => `translate(${i * chartFontSize * 6}, 0)`);
+        key.attr("transform", `translate(${innerW - chartFontSize * 11}, -30)`);
+    });
+    resizeCharts();
 };

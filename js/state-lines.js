@@ -166,7 +166,7 @@ const drawStateLines = (data) => {
         const labels = series
             .filter(isVisible)
             .map(s => ({ state: s.state, y: yScaleState(s.values[s.values.length - 1].hospitalisations) }));
-        spreadLabels(labels, 16, 0, innerH);
+        spreadLabels(labels, chartFontSize * 1.25, 0, innerH);
         labelsGroup
             .selectAll(".direct-label")
             .data(labels, d => d.state)
@@ -213,6 +213,14 @@ const drawStateLines = (data) => {
         hideChartTooltip(stateTooltip);
     };
 
-    updateStateLines("Qld", false);
-    createFilterButtons("filters-state", filtersState, "Choose a state or territory", selectedId => updateStateLines(selectedId, true));
+    let selectedState = "Qld";
+    updateStateLines(selectedState, false);
+    createFilterButtons("filters-state", filtersState, "Choose a state or territory", selectedId => {
+        selectedState = selectedId;
+        updateStateLines(selectedState, true);
+    });
+
+    // Space the direct labels again when the text size changes
+    chartResizeHandlers.push(() => updateStateLines(selectedState, false));
+    resizeCharts();
 };
