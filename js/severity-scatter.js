@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 6 scatterplot exercise (Exercise 6.3) and the Week 6 tooltip exercise
-
 // Scales of the severity scatter plot (C3)
 const xScaleSeverity = d3.scaleLinear();
 const yScaleSeverity = d3.scaleLinear();

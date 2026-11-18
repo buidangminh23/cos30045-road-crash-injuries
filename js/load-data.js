@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 6 load-data.js pattern with one d3.csv() call per data file
-
 // Tell the reader on the page instead of leaving an empty chart area
 const showLoadError = (containerId, error) => {
     console.error(`Error loading the data for #${containerId}:`, error);

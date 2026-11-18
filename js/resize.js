@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following resize.js in the Week 8 Chart Accessibility lecture (Dufour & Meeks, 2024)
-
 // Accessibility: keep chart text at least 12px on a phone by scaling the SVG font with the window width
 const resizeCharts = () => {
     const windowWidth = window.innerWidth;

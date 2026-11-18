@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 5 line chart and the Week 6 filter and tooltip exercises
-
 // Scales of the state and territory line chart (C5)
 const xScaleState = d3.scaleLinear();
 const yScaleState = d3.scaleLinear();

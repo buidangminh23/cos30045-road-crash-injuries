@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 6 histogram exercise (Exercise 6.1)
-
 // Scales of the monthly histogram (C1b)
 const xScaleMonths = d3.scaleLinear();
 const yScaleMonths = d3.scaleLinear();

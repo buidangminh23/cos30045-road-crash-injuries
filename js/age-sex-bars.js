@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 4 bar chart, the Week 5 scaleBand and the Week 6 filter and tooltip exercises
-
 // Scales of the age and sex grouped bar chart (C4)
 const xScaleAge = d3.scaleBand();      // one band per age group
 const xScaleSex = d3.scaleBand();      // one bar per sex inside each age band

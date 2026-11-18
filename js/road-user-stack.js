@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 5 stacked bar chart (d3.stack) and the Week 6 filter and tooltip exercises
-
 // Scales of the road user stack (C2)
 const xScaleStack = d3.scaleBand();
 const yScaleStack = d3.scaleLinear();

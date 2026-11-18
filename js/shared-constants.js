@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 5 and Week 6 shared-constants pattern
-
 // Size of the story charts C1 to C5 (margin convention from Week 5)
 const storyWidth = 700;
 const storyHeight = 400;
