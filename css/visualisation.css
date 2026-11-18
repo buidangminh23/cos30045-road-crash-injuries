@@ -7,15 +7,34 @@
 }
 
 /* Axis tick labels */
+.responsive-svg-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    font-family: var(--font);
+}
+
+.responsive-svg-container svg text {
+    font-family: var(--font);
+}
+
 .tick text {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--font);
     font-size: 14px;
+    fill: var(--muted);
+}
+
+.tick line,
+.domain {
+    stroke: #cbd5e1;
 }
 
 /* Axis labels */
 .axis-label {
     font-size: 14px;
-    fill: #444444;
+    font-weight: 600;
+    fill: var(--muted);
 }
 
 /* Annotation labels above the chart */
@@ -110,8 +129,139 @@
 
 /* Message shown when the data cannot be loaded */
 .error-message {
-    padding: 12px;
+    padding: 16px;
     color: #8a1f11;
     background-color: #fdecea;
     border-radius: 4px;
+}
+
+.chart-tooltip text {
+    font-family: var(--font);
+}
+
+.viz-svg {
+    font-size: var(--vb-font, 13px);
+}
+
+.viz-label {
+    font-size: var(--vb-font, 13px);
+    fill: var(--ink-2);
+}
+
+.viz-label-sm {
+    font-size: var(--vb-font-sm, 12px);
+    fill: var(--ink-2);
+    font-weight: 600;
+}
+
+.viz-label-xl {
+    font-size: calc(var(--vb-font-lg, 18px) * 2.1);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    fill: var(--ink);
+}
+
+.viz-muted {
+    fill: var(--muted);
+}
+
+.viz-strong {
+    font-weight: 700;
+    fill: var(--ink);
+}
+
+.viz-grid .tick line {
+    stroke: #e6ebf2;
+}
+
+.viz-grid .tick text,
+.viz-axis .tick text {
+    font-size: var(--vb-font-sm, 12px);
+}
+
+.viz-mark {
+    cursor: pointer;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.viz-mark:focus {
+    outline: none;
+}
+
+.viz-mark.is-hot,
+.viz-mark:focus-visible {
+    filter: drop-shadow(0 2px 6px rgba(15, 31, 51, 0.35));
+    stroke: var(--ink);
+    stroke-width: 3px;
+}
+
+.hm-cell.is-hot,
+.hm-cell:focus-visible {
+    stroke-width: 2.5px;
+}
+
+.viz-tooltip {
+    position: fixed;
+    z-index: 80;
+    min-width: 180px;
+    max-width: 280px;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #e6eef8;
+    background: rgba(11, 31, 58, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(11, 31, 58, 0.35);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
+}
+
+.viz-tooltip.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.viz-tooltip-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.viz-tooltip-swatch {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.viz-tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.viz-tooltip-row strong {
+    color: #fff;
+}
+
+.donut-host {
+    max-width: 420px;
+}
+
+.html-key.html-key-always {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.filters-compact {
+    justify-content: center;
 }

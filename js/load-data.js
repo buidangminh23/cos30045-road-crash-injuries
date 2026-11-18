@@ -15,7 +15,10 @@ d3.csv("data/c1_national_by_year.csv", d => ({
     hospitalisations: +d.hospitalisations,
     isSeriesBreak: d.is_series_break === "true"   // KNIME writes the flag as the text true or false
 }))
-    .then(data => drawNationalTrend(data))
+    .then(data => {
+        drawNationalTrend(data);
+        drawHeroSpark(data);
+    })
     .catch(error => showLoadError("national-trend", error));
 
 // Q1: national hospitalisations per month (C1b)
@@ -24,7 +27,10 @@ d3.csv("data/c1b_national_by_month.csv", d => ({
     month: d.month,
     hospitalisations: +d.hospitalisations
 }))
-    .then(data => drawMonthlyHistogram(data))
+    .then(data => {
+        drawMonthlyHistogram(data);
+        registerViz("month-heatmap", drawMonthHeatmap, data);
+    })
     .catch(error => showLoadError("monthly-histogram", error));
 
 // Q2: hospitalisations per road user group and year (C2)
@@ -33,7 +39,11 @@ d3.csv("data/c2_road_user_group_by_year.csv", d => ({
     group: d.road_user_group,
     hospitalisations: +d.hospitalisations
 }))
-    .then(data => drawRoadUserStack(data))
+    .then(data => {
+        drawRoadUserStack(data);
+        registerViz("road-user-slope", drawRoadUserSlope, data);
+        drawShareDonut(data);
+    })
     .catch(error => showLoadError("road-user-stack", error));
 
 // Q3: hospitalisations and bed days per case for each road user, 2016-2021 (C3)
@@ -44,7 +54,10 @@ d3.csv("data/c3_road_user_severity_2016_2021.csv", d => ({
     cases: +d.cases,
     bedDaysPerCase: +d.bed_days_per_case
 }))
-    .then(data => drawSeverityScatter(data))
+    .then(data => {
+        drawSeverityScatter(data);
+        registerViz("bed-day-lollipop", drawBedDayLollipop, data);
+    })
     .catch(error => showLoadError("severity-scatter", error));
 
 // Q4: hospitalisations and bed days per case by age group and sex (C4)
@@ -55,7 +68,10 @@ d3.csv("data/c4_age_sex.csv", d => ({
     hospitalisations: +d.hospitalisations_2011_2021,
     bedDaysPerCase: +d.bed_days_per_case_2016_2021
 }))
-    .then(data => drawAgeSexBars(data))
+    .then(data => {
+        drawAgeSexBars(data);
+        registerViz("age-pyramid", drawAgePyramid, data);
+    })
     .catch(error => showLoadError("age-sex-bars", error));
 
 // Q5: hospitalisations by state or territory of residence and year (C5)
@@ -65,5 +81,17 @@ d3.csv("data/c5_state_by_year.csv", d => ({
     stateName: d.state_name,
     hospitalisations: +d.hospitalisations
 }))
-    .then(data => drawStateLines(data))
+    .then(data => {
+        drawStateLines(data);
+        registerViz("state-change-bars", drawStateChangeBars, data);
+    })
     .catch(error => showLoadError("state-lines", error));
+
+d3.csv("data/c5b_first_nations_by_year.csv", d => ({
+    year: +d.year,
+    firstNations: +d.first_nations,
+    notStated: +d.status_not_stated,
+    share: +d.first_nations_share_pct
+}))
+    .then(data => registerViz("first-nations-area", drawFirstNationsArea, data))
+    .catch(error => showLoadError("first-nations-area", error));

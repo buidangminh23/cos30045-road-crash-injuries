@@ -4,148 +4,331 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Interactive data story on hospitalised injuries from road crashes in Australia, 2011-2021">
+    <meta name="theme-color" content="#0b1f3a">
     <title>Hospitalised Injuries from Road Crashes in Australia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/visualisation.css">
 </head>
 <body>
-    <header>
-        <h1>Hospitalised Injuries from Road Crashes in Australia</h1>
-        <nav>
-            <ul>
-                <li><a href="#introduction">Introduction</a></li>
-                <li><a href="#trend">Q1 Trend</a></li>
-                <li><a href="#road-users">Q2 Road users</a></li>
-                <li><a href="#severity">Q3 Severity</a></li>
-                <li><a href="#age-sex">Q4 Age and sex</a></li>
-                <li><a href="#states">Q5 States</a></li>
-                <li><a href="#conclusion">Conclusion</a></li>
-                <li><a href="#about-data">About the data</a></li>
-            </ul>
-        </nav>
+    <a class="skip-link" href="#introduction">Skip to the story</a>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <a class="brand" href="#top" aria-label="Back to the top">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-text">Road Crash Injuries <span class="brand-sub">Australia 2011–2021</span></span>
+            </a>
+            <nav class="site-nav" aria-label="Sections">
+                <ul>
+                    <li><a href="#introduction">Overview</a></li>
+                    <li><a href="#trend"><span class="nav-q">Q1</span> Trend</a></li>
+                    <li><a href="#road-users"><span class="nav-q">Q2</span> Road users</a></li>
+                    <li><a href="#severity"><span class="nav-q">Q3</span> Severity</a></li>
+                    <li><a href="#age-sex"><span class="nav-q">Q4</span> Age &amp; sex</a></li>
+                    <li><a href="#states"><span class="nav-q">Q5</span> States</a></li>
+                    <li><a href="#conclusion">Conclusion</a></li>
+                    <li><a href="#about-data">Data</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="scroll-progress" aria-hidden="true"></div>
     </header>
 
+    <div class="hero" id="top">
+        <div class="hero-inner">
+            <div class="hero-copy">
+                <p class="eyebrow eyebrow-light">An interactive data story · BITRE Hospitalised Injury Data</p>
+                <h1>Hospitalised Injuries from Road Crashes in Australia</h1>
+                <p class="hero-lead">Deaths on the road receive most of the attention, but far more people survive a crash with injuries that need hospital care. Who is being hurt, and how has this changed between 2011 and 2021?</p>
+                <a class="hero-cta" href="#trend">Start the story <span aria-hidden="true">↓</span></a>
+            </div>
+            <div class="hero-spark-card" aria-hidden="true">
+                <div class="spark-head">
+                    <span>National hospitalisations</span>
+                    <span class="spark-years">2011 → 2021</span>
+                </div>
+                <div id="hero-spark"></div>
+                <div class="spark-foot"><span>34,033</span><span>39,505</span></div>
+            </div>
+        </div>
+        <ul class="kpi-grid" aria-label="Key numbers">
+            <li class="kpi">
+                <span class="kpi-value" data-count="39505">39,505</span>
+                <span class="kpi-label">hospitalisations after road crashes in 2021</span>
+            </li>
+            <li class="kpi">
+                <span class="kpi-value" data-count="16" data-prefix="+" data-suffix="%">+16%</span>
+                <span class="kpi-label">more than in 2011 (34,033)</span>
+            </li>
+            <li class="kpi">
+                <span class="kpi-value" data-count="51" data-prefix="+" data-suffix="%">+51%</span>
+                <span class="kpi-label">growth in cyclist hospitalisations, the fastest of any group</span>
+            </li>
+            <li class="kpi kpi-accent">
+                <span class="kpi-value" data-count="10.5" data-decimals="1" data-suffix=" days">10.5 days</span>
+                <span class="kpi-label">average stay of an injured pedestrian, twice the 5.2 days for all road users</span>
+            </li>
+        </ul>
+    </div>
+
     <main>
-        <section id="introduction">
-            <h2>Introduction</h2>
-            <p>Road crashes are a major cause of injury-related hospitalisation in Australia. Deaths on the road receive most of the attention, but far more people survive a crash with injuries that need hospital care. This page uses the Bureau of Infrastructure and Transport Research Economics (BITRE) hospitalised injury data to show who is being hurt and how this has changed between 2011 and 2021.</p>
-            <ul class="key-numbers">
-                <li><strong>39,505</strong> hospitalisations after road crashes in 2021</li>
-                <li><strong>+16%</strong> more than in 2011 (34,033)</li>
-                <li><strong>10.5 days</strong> is the average hospital stay of an injured pedestrian, twice the 5.2 days for all road users</li>
-            </ul>
-            <p>The page answers five questions in order:</p>
-            <ol class="questions">
-                <li>Are fewer people being hospitalised after road crashes?</li>
-                <li>Which road users are hospitalised, and which groups are growing?</li>
-                <li>Which road users have the most serious injuries?</li>
-                <li>How do age and sex shape who is hurt?</li>
-                <li>Where do injured people live, and how have states changed?</li>
-            </ol>
-            <p>Each question has a chart, a short explanation and a "What this means" box.</p>
-            <div class="instructions">To explore the charts, click the buttons, hover over or tap a bar, point or line, or use the Tab key and the arrow keys. Exact values appear in a box next to the mark.</div>
+        <section id="introduction" class="story-section intro-section">
+            <div class="intro-grid">
+                <div class="intro-text reveal">
+                    <p class="eyebrow">Overview</p>
+                    <h2>Five questions, one decade of data</h2>
+                    <p>Road crashes are a major cause of injury-related hospitalisation in Australia. This page uses the Bureau of Infrastructure and Transport Research Economics (BITRE) hospitalised injury data to show who is being hurt and how this has changed between 2011 and 2021. Each question has charts, a short explanation and a "What this means" box.</p>
+                    <div class="instructions">
+                        <span class="instructions-icon" aria-hidden="true">i</span>
+                        <p>To explore the charts, click the buttons, hover over or tap a bar, point, cell or line, or use the Tab key and the arrow keys. Exact values appear in a box next to the mark.</p>
+                    </div>
+                </div>
+                <ol class="question-list reveal">
+                    <li><a href="#trend"><span class="q-num">Q1</span><span>Are fewer people being hospitalised after road crashes?</span></a></li>
+                    <li><a href="#road-users"><span class="q-num">Q2</span><span>Which road users are hospitalised, and which groups are growing?</span></a></li>
+                    <li><a href="#severity"><span class="q-num">Q3</span><span>Which road users have the most serious injuries?</span></a></li>
+                    <li><a href="#age-sex"><span class="q-num">Q4</span><span>How do age and sex shape who is hurt?</span></a></li>
+                    <li><a href="#states"><span class="q-num">Q5</span><span>Where do injured people live, and how have states changed?</span></a></li>
+                </ol>
+            </div>
         </section>
 
-        <section id="trend">
-            <h2>Q1: Are fewer people being hospitalised after road crashes?</h2>
-            <p>No. Hospitalisations rose from 34,033 in 2011 to 39,505 in 2021, an increase of 16%. They held flat in 2012 and fell clearly only in 2020, when COVID-19 restrictions reduced travel. Two changes in how hospitals count patients lowered some of the later counts (grey years), so the real rise may be a little larger than the chart shows.</p>
-            <h3 class="chart-title">Hospitalisations rose 16% from 2011 to 2021</h3>
-            <div id="national-trend" class="responsive-svg-container"></div>
-            <p>Looking at single months shows how unusual 2020 was. Most months (109 of 132) had between 2,700 and 3,500 hospitalisations. Only one month in eleven years fell below 2,500: April 2020, the first full month of COVID-19 restrictions.</p>
-            <h3 class="chart-title">Only one month fell below 2,500: April 2020</h3>
-            <div id="monthly-histogram" class="responsive-svg-container"></div>
+        <section id="trend" class="story-section">
+            <header class="section-head reveal">
+                <p class="eyebrow"><span class="q-badge">Q1</span> National trend</p>
+                <h2>Are fewer people being hospitalised after road crashes?</h2>
+                <p class="section-lead">No. Hospitalisations rose from 34,033 in 2011 to 39,505 in 2021, an increase of 16%. They held flat in 2012 and fell clearly only in 2020, when COVID-19 restrictions reduced travel. Two changes in how hospitals count patients lowered some of the later counts (grey years), so the real rise may be a little larger than the chart shows.</p>
+            </header>
+
+            <figure class="chart-card reveal">
+                <figcaption>
+                    <span class="chart-type">Line chart</span>
+                    <h3 class="chart-title">Hospitalisations rose 16% from 2011 to 2021</h3>
+                </figcaption>
+                <div id="national-trend" class="responsive-svg-container"></div>
+            </figure>
+
+            <p class="section-text reveal">Looking at single months shows how unusual 2020 was. Most months (109 of 132) had between 2,700 and 3,500 hospitalisations. Only one month in eleven years fell below 2,500: April 2020, the first full month of COVID-19 restrictions.</p>
+
+            <figure class="chart-card reveal">
+                    <figcaption>
+                        <span class="chart-type">Histogram</span>
+                        <h3 class="chart-title">Only one month fell below 2,500: April 2020</h3>
+                    </figcaption>
+                    <div id="monthly-histogram" class="responsive-svg-container"></div>
+                </figure>
+                <figure class="chart-card reveal">
+                    <figcaption>
+                        <span class="chart-type">Calendar heatmap</span>
+                        <h3 class="chart-title">Every month, every year: April 2020 is the one pale cell</h3>
+                    </figcaption>
+                    <div id="month-heatmap" class="responsive-svg-container viz-host"></div>
+                </figure>
+
             <p class="chart-note">Counts of hospitalisations from road traffic crashes, by year and by month of admission. Grey years: 2011 still counts Victorian patients treated only in an emergency department (Victoria stopped counting them from July 2012), and from June 2017 New South Wales no longer counts patients treated only in an emergency department or urgent care centre.</p>
-            <p class="takeaway"><strong>What this means:</strong> road crashes are putting more people in hospital, not fewer. The fall in 2020 came from less travel, not safer roads, and the count rose again in 2021.</p>
+            <p class="takeaway reveal"><strong>What this means:</strong> road crashes are putting more people in hospital, not fewer. The fall in 2020 came from less travel, not safer roads, and the count rose again in 2021.</p>
         </section>
 
-        <section id="road-users">
-            <h2>Q2: Which road users are hospitalised, and which groups are growing?</h2>
-            <p>The rise is not shared equally. Car occupants (drivers and passengers) are the largest group, with 18,539 hospitalisations in 2021, almost half of the total. The fastest growth is among cyclists: their hospitalisations rose by 51%, from 5,391 in 2011 to 8,163 in 2021. In 2020, when COVID-19 restrictions reduced travel, every other group fell, but cyclist hospitalisations rose by 14%. Pedestrian hospitalisations fell by 15% over the decade, yet Q3 shows that pedestrians have the most serious injuries.</p>
-            <p>Use the buttons to follow one group on its own scale.</p>
-            <h3 class="chart-title">Cyclists grew fastest: +51%</h3>
-            <div id="filters-road-user" class="filters"></div>
-            <div id="road-user-stack" class="responsive-svg-container"></div>
+        <section id="road-users" class="story-section">
+            <header class="section-head reveal">
+                <p class="eyebrow"><span class="q-badge">Q2</span> Road users</p>
+                <h2>Which road users are hospitalised, and which groups are growing?</h2>
+                <p class="section-lead">The rise is not shared equally. Car occupants (drivers and passengers) are the largest group, with 18,539 hospitalisations in 2021, almost half of the total. The fastest growth is among cyclists: their hospitalisations rose by 51%, from 5,391 in 2011 to 8,163 in 2021. In 2020, when COVID-19 restrictions reduced travel, every other group fell, but cyclist hospitalisations rose by 14%. Pedestrian hospitalisations fell by 15% over the decade, yet Q3 shows that pedestrians have the most serious injuries.</p>
+            </header>
+
+            <figure class="chart-card reveal">
+                <figcaption>
+                    <span class="chart-type">Stacked bar chart</span>
+                    <h3 class="chart-title">Cyclists grew fastest: +51%</h3>
+                    <p class="chart-hint">Use the buttons to follow one group on its own scale.</p>
+                </figcaption>
+                <div id="filters-road-user" class="filters"></div>
+                <div id="road-user-stack" class="responsive-svg-container"></div>
+            </figure>
+
+            <div class="chart-grid">
+                <figure class="chart-card reveal">
+                    <figcaption>
+                        <span class="chart-type">Slope chart</span>
+                        <h3 class="chart-title">2011 → 2021: cyclists up, pedestrians down</h3>
+                    </figcaption>
+                    <div id="road-user-slope" class="responsive-svg-container viz-host"></div>
+                </figure>
+                <figure class="chart-card reveal">
+                    <figcaption>
+                        <span class="chart-type">Donut chart</span>
+                        <h3 class="chart-title">Cyclists' share grew from 16% to 21%</h3>
+                    </figcaption>
+                    <div id="filters-donut-year" class="filters filters-compact"></div>
+                    <div id="share-donut" class="responsive-svg-container viz-host donut-host"></div>
+                </figure>
+            </div>
+
             <p class="chart-note">Counts of hospitalisations, not rates per person. Australia's population and the number of people cycling also changed between 2011 and 2021, so a higher count does not always mean a higher risk. Other road users groups six small categories, such as bus, truck and van occupants. When one group is selected, the y axis starts at zero and is rescaled to that group.</p>
-            <p class="takeaway"><strong>What this means:</strong> vulnerable road users carry a growing share of the harm. Cyclists went from 16% of hospitalisations in 2011 to 21% in 2021.</p>
+            <p class="takeaway reveal"><strong>What this means:</strong> vulnerable road users carry a growing share of the harm. Cyclists went from 16% of hospitalisations in 2011 to 21% in 2021.</p>
         </section>
 
-        <section id="severity">
-            <h2>Q3: Which road users have the most serious injuries?</h2>
-            <p>Counting hospitalisations does not show how badly people were hurt. A hospitalisation is one hospital stay, so a person admitted twice is counted twice. The number of days in hospital per case (bed days per case) is a sign of how serious the injuries are. Between 2016 and 2021 the average stay for all road traffic injuries was 5.23 days. Pedestrians stayed 10.46 days, twice as long, even though there were far fewer of them (15,268 hospitalisations). Cyclists are the opposite: many hospitalisations (44,736) but the shortest stays, 3.07 days.</p>
-            <h3 class="chart-title">Pedestrians stay longest: 10.5 days per case</h3>
-            <div id="severity-scatter" class="responsive-svg-container"></div>
+        <section id="severity" class="story-section">
+            <header class="section-head reveal">
+                <p class="eyebrow"><span class="q-badge">Q3</span> Severity</p>
+                <h2>Which road users have the most serious injuries?</h2>
+                <p class="section-lead">Counting hospitalisations does not show how badly people were hurt. A hospitalisation is one hospital stay, so a person admitted twice is counted twice. The number of days in hospital per case (bed days per case) is a sign of how serious the injuries are. Between 2016 and 2021 the average stay for all road traffic injuries was 5.23 days. Pedestrians stayed 10.46 days, twice as long, even though there were far fewer of them (15,268 hospitalisations). Cyclists are the opposite: many hospitalisations (44,736) but the shortest stays, 3.07 days.</p>
+            </header>
+
+            <figure class="chart-card reveal">
+                    <figcaption>
+                        <span class="chart-type">Scatter plot</span>
+                        <h3 class="chart-title">Pedestrians stay longest: 10.5 days per case</h3>
+                    </figcaption>
+                    <div id="severity-scatter" class="responsive-svg-container"></div>
+                </figure>
+                <figure class="chart-card reveal">
+                    <figcaption>
+                        <span class="chart-type">Lollipop chart</span>
+                        <h3 class="chart-title">Ranked: pedestrians top, cyclists bottom</h3>
+                    </figcaption>
+                    <div id="bed-day-lollipop" class="responsive-svg-container viz-host"></div>
+                </figure>
+
             <p class="chart-note">Each point is one road user type, 2016-2021 (the years with bed day data after the July 2015 rule change). Hollow points are based on fewer than 1,000 cases, so their averages are less certain. Hover over or tap a point to see its values.</p>
-            <p class="takeaway"><strong>What this means:</strong> a pedestrian hit by a vehicle is likely to stay in hospital twice as long as the average road crash patient. Fewer pedestrian cases does not mean less harm.</p>
+            <p class="takeaway reveal"><strong>What this means:</strong> a pedestrian hit by a vehicle is likely to stay in hospital twice as long as the average road crash patient. Fewer pedestrian cases does not mean less harm.</p>
         </section>
 
-        <section id="age-sex">
-            <h2>Q4: How do age and sex shape who is hurt?</h2>
-            <p>Behind each road user group are people of every age. Males make up 65% of road crash hospitalisations, and the gap is widest for young adults: among people aged 17 to 25, almost twice as many males as females were hospitalised. The pattern changes with age. At 75 and over, as many women as men are hospitalised (12,634 and 12,571). Switch to bed days per case to see the second half of the story: older people stay longest. People aged 75 and over stay about 11 days, twice the average of 5.23 days.</p>
-            <h3 class="chart-title">Men are hurt more often, but people aged 75+ stay longest</h3>
-            <div class="filter-row">
-                <span class="filter-row-label">Show:</span>
-                <div id="filters-age-measure" class="filters"></div>
-            </div>
-            <div class="filter-row">
-                <span class="filter-row-label">Sex:</span>
-                <div id="filters-age-sex" class="filters"></div>
-            </div>
-            <div id="age-sex-bars" class="responsive-svg-container"></div>
+        <section id="age-sex" class="story-section">
+            <header class="section-head reveal">
+                <p class="eyebrow"><span class="q-badge">Q4</span> Age and sex</p>
+                <h2>How do age and sex shape who is hurt?</h2>
+                <p class="section-lead">Behind each road user group are people of every age. Males make up 65% of road crash hospitalisations, and the gap is widest for young adults: among people aged 17 to 25, almost twice as many males as females were hospitalised. The pattern changes with age. At 75 and over, as many women as men are hospitalised (12,634 and 12,571). Switch to bed days per case to see the second half of the story: older people stay longest. People aged 75 and over stay about 11 days, twice the average of 5.23 days.</p>
+            </header>
+
+            <figure class="chart-card reveal">
+                <figcaption>
+                    <span class="chart-type">Population pyramid</span>
+                    <h3 class="chart-title">Males dominate every age group, until 75+</h3>
+                </figcaption>
+                <div id="age-pyramid" class="responsive-svg-container viz-host"></div>
+            </figure>
+
+            <figure class="chart-card reveal">
+                <figcaption>
+                    <span class="chart-type">Grouped bar chart</span>
+                    <h3 class="chart-title">Men are hurt more often, but people aged 75+ stay longest</h3>
+                </figcaption>
+                <div class="filter-row">
+                    <span class="filter-row-label">Show</span>
+                    <div id="filters-age-measure" class="filters"></div>
+                </div>
+                <div class="filter-row">
+                    <span class="filter-row-label">Sex</span>
+                    <div id="filters-age-sex" class="filters"></div>
+                </div>
+                <div id="age-sex-bars" class="responsive-svg-container"></div>
+            </figure>
+
             <p class="chart-note">Counts of hospitalisations, not rates per person. The age groups are not the same width: 40-64 covers 25 years, 17-25 only 9 years, so wider groups have more people in them. Hospitalisations cover 2011-2021; bed days per case cover 2016-2021.</p>
-            <p class="takeaway"><strong>What this means:</strong> young men are hospitalised most often, but older road users, women as well as men, have the longest and most serious stays.</p>
+            <p class="takeaway reveal"><strong>What this means:</strong> young men are hospitalised most often, but older road users, women as well as men, have the longest and most serious stays.</p>
         </section>
 
-        <section id="states">
-            <h2>Q5: Where do injured people live, and how have states changed?</h2>
-            <p>The national rise is not the same everywhere. Queensland's hospitalisations grew by 65%, from 6,322 in 2011 to 10,447 in 2021. Tasmania (+63%), the Northern Territory (+56%) and the ACT (+38%) also grew quickly, but from small numbers. New South Wales fell by 15%, partly because from 2017 its hospitals stopped counting patients treated only in an emergency department. Select your own state to see its trend on its own scale.</p>
-            <h3 class="chart-title">Queensland grew fastest of the large states: +65%</h3>
-            <div id="filters-state" class="filters"></div>
-            <div id="state-lines" class="responsive-svg-container"></div>
+        <section id="states" class="story-section">
+            <header class="section-head reveal">
+                <p class="eyebrow"><span class="q-badge">Q5</span> States and territories</p>
+                <h2>Where do injured people live, and how have states changed?</h2>
+                <p class="section-lead">The national rise is not the same everywhere. Queensland's hospitalisations grew by 65%, from 6,322 in 2011 to 10,447 in 2021. Tasmania (+63%), the Northern Territory (+56%) and the ACT (+38%) also grew quickly, but from small numbers. New South Wales fell by 15%, partly because from 2017 its hospitals stopped counting patients treated only in an emergency department. Select your own state to see its trend on its own scale.</p>
+            </header>
+
+            <figure class="chart-card reveal">
+                <figcaption>
+                    <span class="chart-type">Multi-line chart</span>
+                    <h3 class="chart-title">Queensland grew fastest of the large states: +65%</h3>
+                </figcaption>
+                <div id="filters-state" class="filters"></div>
+                <div id="state-lines" class="responsive-svg-container"></div>
+            </figure>
+
+            <p class="section-text reveal">Hospitalisations of First Nations people rose from 1,167 in 2011 to 2,220 in 2021. Over the same years the number of records with Indigenous status not stated fell from 869 to 530, so better recording in hospitals explains part of this rise. These are counts, not rates, and they do not measure risk.</p>
+
+            <div class="chart-grid">
+                <figure class="chart-card reveal">
+                    <figcaption>
+                        <span class="chart-type">Diverging bar chart</span>
+                        <h3 class="chart-title">Seven of eight grew; only NSW fell</h3>
+                    </figcaption>
+                    <div id="state-change-bars" class="responsive-svg-container viz-host"></div>
+                </figure>
+                <figure class="chart-card reveal">
+                    <figcaption>
+                        <span class="chart-type">Area chart</span>
+                        <h3 class="chart-title">First Nations hospitalisations almost doubled</h3>
+                    </figcaption>
+                    <div id="first-nations-area" class="responsive-svg-container viz-host"></div>
+                </figure>
+            </div>
+
             <p class="chart-note">Counts by the state or territory where the injured person lives, not where the crash happened. Counts are not rates: New South Wales has about 16 times as many hospitalisations as the Northern Territory mainly because far more people live there. When one state is selected, the y axis starts at zero and is rescaled to that state, and states that would not fit are hidden. The states add up to 470 to 997 fewer than the national total each year, because some records have no state.</p>
-            <p>Hospitalisations of First Nations people rose from 1,167 in 2011 to 2,220 in 2021. Over the same years the number of records with Indigenous status not stated fell from 869 to 530, so better recording in hospitals explains part of this rise. These are counts, not rates, and they do not measure risk.</p>
-            <p class="takeaway"><strong>What this means:</strong> where you live changes the trend you see. Fast growth in Queensland and the territories shows that road safety gains are not shared across Australia.</p>
+            <p class="takeaway reveal"><strong>What this means:</strong> where you live changes the trend you see. Fast growth in Queensland and the territories shows that road safety gains are not shared across Australia.</p>
         </section>
 
-        <section id="conclusion">
-            <h2>Conclusion: what the five questions show</h2>
-            <ul>
-                <li><strong>Q1:</strong> road crash hospitalisations did not fall between 2011 and 2021; they rose by 16%, and the only clear fall, in 2020, came from less travel.</li>
-                <li><strong>Q2:</strong> car occupants are the largest group, but cyclist hospitalisations grew fastest (+51%).</li>
-                <li><strong>Q3:</strong> pedestrians have the most serious injuries, staying 10.46 days per case, twice the average.</li>
-                <li><strong>Q4:</strong> young men are hospitalised most often, while people aged 75 and over, women as much as men, stay longest.</li>
-                <li><strong>Q5:</strong> the trend differs by state; Queensland grew by 65%, while the New South Wales fall is partly a recording change.</li>
+        <section id="conclusion" class="story-section conclusion-section">
+            <header class="section-head reveal">
+                <p class="eyebrow">Conclusion</p>
+                <h2>What the five questions show</h2>
+            </header>
+            <ul class="conclusion-grid">
+                <li class="reveal"><span class="q-num">Q1</span><p>Road crash hospitalisations did not fall between 2011 and 2021; they rose by 16%, and the only clear fall, in 2020, came from less travel.</p></li>
+                <li class="reveal"><span class="q-num">Q2</span><p>Car occupants are the largest group, but cyclist hospitalisations grew fastest (+51%).</p></li>
+                <li class="reveal"><span class="q-num">Q3</span><p>Pedestrians have the most serious injuries, staying 10.46 days per case, twice the average.</p></li>
+                <li class="reveal"><span class="q-num">Q4</span><p>Young men are hospitalised most often, while people aged 75 and over, women as much as men, stay longest.</p></li>
+                <li class="reveal"><span class="q-num">Q5</span><p>The trend differs by state; Queensland grew by 65%, while the New South Wales fall is partly a recording change.</p></li>
             </ul>
-            <p class="takeaway"><strong>What this means for you:</strong> take extra care around cyclists, pedestrians and older road users. They carry a large and growing share of the harm, and their injuries keep them in hospital longest.</p>
+            <p class="takeaway takeaway-strong reveal"><strong>What this means for you:</strong> take extra care around cyclists, pedestrians and older road users. They carry a large and growing share of the harm, and their injuries keep them in hospital longest.</p>
         </section>
 
-        <section id="about-data">
-            <h2>About the data</h2>
-            <p><strong>Source.</strong> Bureau of Infrastructure and Transport Research Economics (BITRE), Hospitalised Injury Data, national, state and territory, and First Nations workbooks, 2011-2021 (published September 2023). Only road traffic crashes are shown.</p>
-            <p><strong>Processing.</strong> The team cleaned, filtered and aggregated the raw records in a KNIME workflow (Group5_RoadCrashInjuries_DataProcessing). Every yearly total was checked against BITRE's own published tables. The CSV files used by these charts are the workflow's outputs.</p>
-            <p><strong>Limitations.</strong> The data are counts of hospitalisations, not rates per person, so they do not measure risk. Victoria (from July 2012) and New South Wales (from June 2017) changed how they count patients treated only in an emergency department, which lowers later counts. Bed days per case are shown only for 2016-2021, after a rule change in July 2015. Age groups have different widths.</p>
-            <p><strong>Privacy and ethics.</strong> Hospital records are sensitive personal information. This page shows only the aggregated counts that BITRE has already published, so no person can be identified. First Nations counts are reported as counts with their recording caveat, not as a measure of risk.</p>
+        <section id="about-data" class="story-section about-section">
+            <header class="section-head reveal">
+                <p class="eyebrow">Method</p>
+                <h2>About the data</h2>
+            </header>
+            <div class="about-grid">
+                <div class="about-card reveal"><h3>Source</h3><p>Bureau of Infrastructure and Transport Research Economics (BITRE), Hospitalised Injury Data, national, state and territory, and First Nations workbooks, 2011-2021 (published September 2023). Only road traffic crashes are shown.</p></div>
+                <div class="about-card reveal"><h3>Processing</h3><p>The team cleaned, filtered and aggregated the raw records in a KNIME workflow (Group5_RoadCrashInjuries_DataProcessing). Every yearly total was checked against BITRE's own published tables. The CSV files used by these charts are the workflow's outputs.</p></div>
+                <div class="about-card reveal"><h3>Limitations</h3><p>The data are counts of hospitalisations, not rates per person, so they do not measure risk. Victoria (from July 2012) and New South Wales (from June 2017) changed how they count patients treated only in an emergency department, which lowers later counts. Bed days per case are shown only for 2016-2021, after a rule change in July 2015. Age groups have different widths.</p></div>
+                <div class="about-card reveal"><h3>Privacy and ethics</h3><p>Hospital records are sensitive personal information. This page shows only the aggregated counts that BITRE has already published, so no person can be identified. First Nations counts are reported as counts with their recording caveat, not as a measure of risk.</p></div>
+            </div>
         </section>
     </main>
 
-    <footer>
-        <p>Data source: <a href="https://www.bitre.gov.au/publications/ongoing/hospitalised-injury">BITRE Hospitalised Injury Data</a></p>
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <p>Data source: <a href="https://www.bitre.gov.au/publications/ongoing/hospitalised-injury">BITRE Hospitalised Injury Data</a></p>
+            <p class="footer-meta">COS30045 Data Visualisation · Built with D3.js v7</p>
+        </div>
     </footer>
 
-    <!-- D3 v7, loaded the same way as the unit exercises -->
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <!-- Load the project scripts (load-data.js last, as in the Week 5 lecture) -->
     <script src="js/shared-constants.js"></script>
     <script src="js/accessibility.js"></script>
     <script src="js/tooltip.js"></script>
+    <script src="js/viz-kit.js"></script>
+    <script src="js/page.js"></script>
     <script src="js/national-trend.js"></script>
     <script src="js/monthly-histogram.js"></script>
+    <script src="js/month-heatmap.js"></script>
     <script src="js/direct-labels.js"></script>
     <script src="js/resize.js"></script>
     <script src="js/interactions.js"></script>
     <script src="js/road-user-stack.js"></script>
+    <script src="js/road-user-slope.js"></script>
+    <script src="js/share-donut.js"></script>
     <script src="js/severity-scatter.js"></script>
+    <script src="js/bed-day-lollipop.js"></script>
     <script src="js/age-sex-bars.js"></script>
+    <script src="js/age-pyramid.js"></script>
     <script src="js/state-lines.js"></script>
+    <script src="js/state-change-bars.js"></script>
+    <script src="js/first-nations-area.js"></script>
     <script src="js/load-data.js"></script>
 </body>
 </html>
