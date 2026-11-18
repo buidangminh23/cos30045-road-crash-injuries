@@ -32,9 +32,9 @@ const drawFirstNationsArea = (data, compact) => {
         .attr("transform", `translate(0, ${innerH})`)
         .call(d3.axisBottom(x).tickValues(compact ? [2011, 2016, 2021] : yearTicks).tickFormat(d3.format("d")).tickSizeOuter(0));
 
-    const area = d3.area().x(d => x(d.year)).y0(innerH).y1(d => y(d.firstNations)).curve(d3.curveMonotoneX);
-    const line = d3.line().x(d => x(d.year)).y(d => y(d.firstNations)).curve(d3.curveMonotoneX);
-    const notStatedLine = d3.line().x(d => x(d.year)).y(d => y(d.notStated)).curve(d3.curveMonotoneX);
+    const area = d3.area().x(d => x(d.year)).y0(innerH).y1(d => y(d.firstNations));
+    const line = d3.line().x(d => x(d.year)).y(d => y(d.firstNations));
+    const notStatedLine = d3.line().x(d => x(d.year)).y(d => y(d.notStated));
 
     const clip = defs.append("clipPath").attr("id", "fn-clip").append("rect").attr("width", 0).attr("height", innerH + 10).attr("y", -10);
     const plot = g.append("g").attr("clip-path", "url(#fn-clip)");

@@ -35,6 +35,12 @@ The code is split by role: data loading, one file per chart, interaction and acc
 | `js/age-pyramid.js` | Visualisation | Population pyramid by age group and sex (Q4) |
 | `js/state-change-bars.js` | Visualisation | Diverging bar chart of change by state, 2011-2021 (Q5) |
 | `js/first-nations-area.js` | Visualisation | Area chart of First Nations hospitalisations (Q5) |
+| `js/deep-analysis.js` | Analysis | Calculates every "Deeper analysis" figure from the CSV files in the browser (anomalies, growth rates, shares, ratios, contributions) |
+| `js/monthly-anomaly.js` | Visualisation | Diverging columns: 2020-2021 months vs the 2017-2019 same-month average (Q1) |
+| `js/road-user-index.js` | Visualisation | Indexed line chart, 2011 = 100 (Q2) |
+| `js/burden-dumbbell.js` | Visualisation | Dumbbell chart: share of cases vs share of bed days (Q3) |
+| `js/sex-ratio.js` | Visualisation | Males per female by age group (Q4) |
+| `js/state-waterfall.js` | Visualisation | Waterfall of each state's contribution to the combined change (Q5) |
 | `js/viz-kit.js` | Interaction | HTML tooltip, responsive text and compact layouts for the newer charts |
 | `js/page.js` | Presentation | Hero sparkline, animated key numbers, scroll progress, section highlighting |
 | `js/interactions.js` | Interaction | Reusable filter buttons (Week 6 pattern, with ARIA from Week 8) |

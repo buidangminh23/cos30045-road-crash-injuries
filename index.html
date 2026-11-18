@@ -129,6 +129,25 @@
                 </figure>
 
             <p class="chart-note">Counts of hospitalisations from road traffic crashes, by year and by month of admission. Grey years: 2011 still counts Victorian patients treated only in an emergency department (Victoria stopped counting them from July 2012), and from June 2017 New South Wales no longer counts patients treated only in an emergency department or urgent care centre.</p>
+            <div class="deep-dive reveal">
+                <div class="deep-dive-head">
+                    <span class="deep-dive-tag">Deeper analysis</span>
+                    <h3>Against a normal year, how deep was the 2020 drop?</h3>
+                </div>
+                <ul class="stat-strip">
+                    <li class="stat"><span class="stat-value"><span data-stat="lowest-anomaly">…</span></span><span class="stat-label"><span data-stat="lowest-anomaly-month">…</span> compared with the same month in 2017–2019</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="national-growth-rate">…</span></span><span class="stat-label">average change per year in hospitalisations, 2011 to 2021</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="season-peak">…</span></span><span class="stat-label"><span data-stat="season-peak-month">…</span>, the busiest month, compared with an average month (quietest: <span data-stat="season-trough-month">…</span>, <span data-stat="season-trough">…</span>)</span></li>
+                </ul>
+                <figure class="chart-card chart-card-flat">
+                    <figcaption>
+                        <span class="chart-type">Diverging column chart</span>
+                        <h4 class="chart-title">Every month of 2020 and 2021 against its 2017–2019 average</h4>
+                    </figcaption>
+                    <div id="monthly-anomaly" class="responsive-svg-container viz-host"></div>
+                </figure>
+                <p class="method-note"><strong>Method.</strong> Each month of 2020 and 2021 is compared with the mean of the same calendar month in 2017, 2018 and 2019, so seasonal patterns cancel out. Average change per year is the compound rate between the 2011 and 2021 totals. The seasonal figures compare each calendar month's mean over all eleven years with the mean of all 132 months. All three are calculated in the browser from the CSV files.</p>
+            </div>
             <p class="takeaway reveal"><strong>What this means:</strong> road crashes are putting more people in hospital, not fewer. The fall in 2020 came from less travel, not safer roads, and the count rose again in 2021.</p>
         </section>
 
@@ -168,6 +187,25 @@
             </div>
 
             <p class="chart-note">Counts of hospitalisations, not rates per person. Australia's population and the number of people cycling also changed between 2011 and 2021, so a higher count does not always mean a higher risk. Other road users groups six small categories, such as bus, truck and van occupants. When one group is selected, the y axis starts at zero and is rescaled to that group.</p>
+            <div class="deep-dive reveal">
+                <div class="deep-dive-head">
+                    <span class="deep-dive-tag">Deeper analysis</span>
+                    <h3>Which group drove the national rise?</h3>
+                </div>
+                <ul class="stat-strip">
+                    <li class="stat"><span class="stat-value"><span data-stat="cyclist-share-of-rise">…</span></span><span class="stat-label">of the national rise came from cyclists (<span data-stat="cyclist-rise">…</span> of <span data-stat="national-rise">…</span>)</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="cyclist-growth-rate">…</span></span><span class="stat-label">cyclist average change per year, against <span data-stat="national-growth-rate-2">…</span> for all road users</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="cyclist-index">…</span> vs <span data-stat="pedestrian-index">…</span></span><span class="stat-label">cyclist and pedestrian hospitalisations in 2021, indexed to 2011 = 100</span></li>
+                </ul>
+                <figure class="chart-card chart-card-flat">
+                    <figcaption>
+                        <span class="chart-type">Indexed line chart</span>
+                        <h4 class="chart-title">Growth from the same starting point: 2011 = 100</h4>
+                    </figcaption>
+                    <div id="road-user-index" class="responsive-svg-container viz-host"></div>
+                </figure>
+                <p class="method-note"><strong>Method.</strong> Indexing divides each group's count by its own 2011 count, so groups of very different sizes can be compared. A group's share of the national rise is its 2011 to 2021 change divided by the sum of all groups' changes. Calculated in the browser from the CSV files.</p>
+            </div>
             <p class="takeaway reveal"><strong>What this means:</strong> vulnerable road users carry a growing share of the harm. Cyclists went from 16% of hospitalisations in 2011 to 21% in 2021.</p>
         </section>
 
@@ -194,6 +232,25 @@
                 </figure>
 
             <p class="chart-note">Each point is one road user type, 2016-2021 (the years with bed day data after the July 2015 rule change). Hollow points are based on fewer than 1,000 cases, so their averages are less certain. Hover over or tap a point to see its values.</p>
+            <div class="deep-dive reveal">
+                <div class="deep-dive-head">
+                    <span class="deep-dive-tag">Deeper analysis</span>
+                    <h3>Who uses the most hospital time?</h3>
+                </div>
+                <ul class="stat-strip">
+                    <li class="stat"><span class="stat-value"><span data-stat="pedestrian-case-share">…</span> → <span data-stat="pedestrian-bed-share">…</span></span><span class="stat-label">pedestrians' share of cases compared with their share of bed days, 2016–2021</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="cyclist-case-share">…</span> → <span data-stat="cyclist-bed-share">…</span></span><span class="stat-label">cyclists' share of cases compared with their share of bed days</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="total-bed-days">…</span></span><span class="stat-label">bed days used by road crash patients, 2016–2021</span></li>
+                </ul>
+                <figure class="chart-card chart-card-flat">
+                    <figcaption>
+                        <span class="chart-type">Dumbbell chart</span>
+                        <h4 class="chart-title">Pedestrians use twice the bed days their case count suggests</h4>
+                    </figcaption>
+                    <div id="burden-dumbbell" class="responsive-svg-container viz-host"></div>
+                </figure>
+                <p class="method-note"><strong>Method.</strong> Shares are the sum of cases and bed days of every road user type in a group, divided by the totals for all road users, 2016–2021. The ratio next to each row is share of bed days divided by share of cases: above 1 means longer stays than average. Calculated in the browser from the CSV files.</p>
+            </div>
             <p class="takeaway reveal"><strong>What this means:</strong> a pedestrian hit by a vehicle is likely to stay in hospital twice as long as the average road crash patient. Fewer pedestrian cases does not mean less harm.</p>
         </section>
 
@@ -201,7 +258,7 @@
             <header class="section-head reveal">
                 <p class="eyebrow"><span class="q-badge">Q4</span> Age and sex</p>
                 <h2>How do age and sex shape who is hurt?</h2>
-                <p class="section-lead">Behind each road user group are people of every age. Males make up 65% of road crash hospitalisations, and the gap is widest for young adults: among people aged 17 to 25, almost twice as many males as females were hospitalised. The pattern changes with age. At 75 and over, as many women as men are hospitalised (12,634 and 12,571). Switch to bed days per case to see the second half of the story: older people stay longest. People aged 75 and over stay about 11 days, twice the average of 5.23 days.</p>
+                <p class="section-lead">Behind each road user group are people of every age. Males make up 65% of road crash hospitalisations. From age 8 to 64, at least 1.9 males were hospitalised for every female, and the ratio is highest, 2.5, among children aged 8 to 16. The pattern changes with age. At 75 and over, as many women as men are hospitalised (12,634 and 12,571). Switch to bed days per case to see the second half of the story: older people stay longest. People aged 75 and over stay about 11 days, twice the average of 5.23 days.</p>
             </header>
 
             <figure class="chart-card reveal">
@@ -229,6 +286,25 @@
             </figure>
 
             <p class="chart-note">Counts of hospitalisations, not rates per person. The age groups are not the same width: 40-64 covers 25 years, 17-25 only 9 years, so wider groups have more people in them. Hospitalisations cover 2011-2021; bed days per case cover 2016-2021.</p>
+            <div class="deep-dive reveal">
+                <div class="deep-dive-head">
+                    <span class="deep-dive-tag">Deeper analysis</span>
+                    <h3>How big is the male–female gap at each age?</h3>
+                </div>
+                <ul class="stat-strip">
+                    <li class="stat"><span class="stat-value"><span data-stat="highest-sex-ratio">…</span></span><span class="stat-label">males per female at age <span data-stat="highest-sex-ratio-age">…</span>, the highest of any age group</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="widest-gap">…</span></span><span class="stat-label">more males than females at age <span data-stat="widest-gap-age">…</span>, the largest gap in numbers</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="older-case-share">…</span> → <span data-stat="older-bed-share">…</span></span><span class="stat-label">people aged 65 and over: share of cases compared with share of bed days, 2016–2021</span></li>
+                </ul>
+                <figure class="chart-card chart-card-flat">
+                    <figcaption>
+                        <span class="chart-type">Ratio line chart</span>
+                        <h4 class="chart-title">The ratio peaks among children aged 8–16 and falls to 1.0 at 75+</h4>
+                    </figcaption>
+                    <div id="sex-ratio" class="responsive-svg-container viz-host"></div>
+                </figure>
+                <p class="method-note"><strong>Method.</strong> The ratio is male hospitalisations divided by female hospitalisations in each age group, 2011–2021. Because it is a ratio within each age group, the different widths of the age groups do not affect it. The 65 and over shares use cases and bed days for 2016–2021. Calculated in the browser from the CSV files.</p>
+            </div>
             <p class="takeaway reveal"><strong>What this means:</strong> young men are hospitalised most often, but older road users, women as well as men, have the longest and most serious stays.</p>
         </section>
 
@@ -268,6 +344,25 @@
             </div>
 
             <p class="chart-note">Counts by the state or territory where the injured person lives, not where the crash happened. Counts are not rates: New South Wales has about 16 times as many hospitalisations as the Northern Territory mainly because far more people live there. When one state is selected, the y axis starts at zero and is rescaled to that state, and states that would not fit are hidden. The states add up to 470 to 997 fewer than the national total each year, because some records have no state.</p>
+            <div class="deep-dive reveal">
+                <div class="deep-dive-head">
+                    <span class="deep-dive-tag">Deeper analysis</span>
+                    <h3>Which states account for the combined rise?</h3>
+                </div>
+                <ul class="stat-strip">
+                    <li class="stat"><span class="stat-value"><span data-stat="qld-share-of-rise">…</span></span><span class="stat-label">of the combined rise of all states came from Queensland (<span data-stat="qld-rise">…</span> of <span data-stat="states-rise">…</span>)</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="nsw-change">…</span></span><span class="stat-label">change in New South Wales, the only state to fall</span></li>
+                    <li class="stat"><span class="stat-value"><span data-stat="nsw-stay">…</span> vs <span data-stat="qld-stay">…</span></span><span class="stat-label">bed days per hospitalisation in NSW and Queensland, 2016–2021</span></li>
+                </ul>
+                <figure class="chart-card chart-card-flat">
+                    <figcaption>
+                        <span class="chart-type">Waterfall chart</span>
+                        <h4 class="chart-title">Queensland's rise is most of the combined change</h4>
+                    </figcaption>
+                    <div id="state-waterfall" class="responsive-svg-container viz-host"></div>
+                </figure>
+                <p class="method-note"><strong>Method.</strong> Each bar is a state's change between 2011 and 2021; the bars add up to the change in the sum of all states, which is smaller than the national total because some records have no state. The longer NSW stays fit its 2017 recording change: patients treated only in an emergency department, who usually stay briefly, are no longer counted. This does not prove the cause. Calculated in the browser from the CSV files.</p>
+            </div>
             <p class="takeaway reveal"><strong>What this means:</strong> where you live changes the trend you see. Fast growth in Queensland and the territories shows that road safety gains are not shared across Australia.</p>
         </section>
 
@@ -329,6 +424,12 @@
     <script src="js/state-lines.js"></script>
     <script src="js/state-change-bars.js"></script>
     <script src="js/first-nations-area.js"></script>
+    <script src="js/deep-analysis.js"></script>
+    <script src="js/monthly-anomaly.js"></script>
+    <script src="js/road-user-index.js"></script>
+    <script src="js/burden-dumbbell.js"></script>
+    <script src="js/sex-ratio.js"></script>
+    <script src="js/state-waterfall.js"></script>
     <script src="js/load-data.js"></script>
 </body>
 </html>

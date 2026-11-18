@@ -16,18 +16,22 @@ d3.csv("data/c1_national_by_year.csv", d => ({
     .then(data => {
         drawNationalTrend(data);
         drawHeroSpark(data);
+        fillNationalGrowthStat(data);
     })
     .catch(error => showLoadError("national-trend", error));
 
 // Q1: national hospitalisations per month (C1b)
 d3.csv("data/c1b_national_by_month.csv", d => ({
     year: +d.year,
+    monthNum: +d.month_num,
     month: d.month,
     hospitalisations: +d.hospitalisations
 }))
     .then(data => {
         drawMonthlyHistogram(data);
         registerViz("month-heatmap", drawMonthHeatmap, data);
+        registerViz("monthly-anomaly", drawMonthlyAnomaly, data);
+        fillMonthlyStats(data);
     })
     .catch(error => showLoadError("monthly-histogram", error));
 
@@ -41,6 +45,8 @@ d3.csv("data/c2_road_user_group_by_year.csv", d => ({
         drawRoadUserStack(data);
         registerViz("road-user-slope", drawRoadUserSlope, data);
         drawShareDonut(data);
+        registerViz("road-user-index", drawRoadUserIndex, data);
+        fillRoadUserStats(data);
     })
     .catch(error => showLoadError("road-user-stack", error));
 
@@ -50,11 +56,14 @@ d3.csv("data/c3_road_user_severity_2016_2021.csv", d => ({
     group: d.road_user_group,
     hospitalisations: +d.hospitalisations,
     cases: +d.cases,
+    bedDays: +d.bed_days,
     bedDaysPerCase: +d.bed_days_per_case
 }))
     .then(data => {
         drawSeverityScatter(data);
         registerViz("bed-day-lollipop", drawBedDayLollipop, data);
+        registerViz("burden-dumbbell", drawBurdenDumbbell, data);
+        fillSeverityStats(data);
     })
     .catch(error => showLoadError("severity-scatter", error));
 
@@ -64,11 +73,15 @@ d3.csv("data/c4_age_sex.csv", d => ({
     ageOrder: +d.age_order,
     sex: d.sex,
     hospitalisations: +d.hospitalisations_2011_2021,
+    cases: +d.cases_2016_2021,
+    bedDays: +d.bed_days_2016_2021,
     bedDaysPerCase: +d.bed_days_per_case_2016_2021
 }))
     .then(data => {
         drawAgeSexBars(data);
         registerViz("age-pyramid", drawAgePyramid, data);
+        registerViz("sex-ratio", drawSexRatio, data);
+        fillAgeStats(data);
     })
     .catch(error => showLoadError("age-sex-bars", error));
 
@@ -77,11 +90,14 @@ d3.csv("data/c5_state_by_year.csv", d => ({
     year: +d.year,
     state: d.state,
     stateName: d.state_name,
-    hospitalisations: +d.hospitalisations
+    hospitalisations: +d.hospitalisations,
+    bedDays: +d.bed_days
 }))
     .then(data => {
         drawStateLines(data);
         registerViz("state-change-bars", drawStateChangeBars, data);
+        registerViz("state-waterfall", drawStateWaterfall, data);
+        fillStateStats(data);
     })
     .catch(error => showLoadError("state-lines", error));
 
