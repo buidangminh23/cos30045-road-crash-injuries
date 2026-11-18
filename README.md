@@ -103,17 +103,3 @@ Open the folder with a local web server (for example VS Code Live Server, or `np
 ## Hosting
 
 The website is hosted on GitHub Pages and deployed from `main`: https://buidangminh23.github.io/cos30045-road-crash-injuries/
-
-## Generative AI use
-
-Claude Opus 5.5 (Anthropic) was used to write the week 6 version of the website: the file structure, the line chart, the filter buttons, the tooltip and the page text. Generated code is marked with a comment in each JavaScript file, and the commits that contain it say so. The KNIME workflow in `knime/` was also built and executed with Claude Opus 5.5 (Anthropic) from the team's node-by-node build guide, and its node results and CSV files were checked against an independent Python version of the same steps. The team must be able to explain every part of the code in the face-to-face interviews.
-
-On 3 November 2026 Claude Opus 5.5 also wrote the final version of the website (pull requests #5 to #15): the six charts C1 to C5, the shared tooltip, the filter buttons, the Week 8 accessibility features, the responsive text, and the page text of Q1 to Q5, the conclusion and About the data, and the fixes found in testing (pull requests #13 and #14). It followed the chart designs in the team's Design Book (Tables 3.1 to 3.6) and was told to use only techniques taught in the unit. Every new file starts with a "Generated with GenAI" comment that names the unit exercise or lecture it follows, and every commit body says "Largely generated with GenAI (Claude Opus 5.5)". The numbers in the page text were checked against the CSV files before they were written.
-
-### Summary of prompts
-
-Prompts were written in Vietnamese; English translations:
-
-1. Week 6 (20 October 2026): build one feature for this week only, using only knowledge from weeks 1 to 6: a road user trend line chart with filter buttons and a tooltip.
-2. KNIME (27 October 2026): build the complete KNIME workflow from the team's build guide, so the data can be used on the website.
-3. Final website (3 November 2026): "Complete the Project Design Book and Website in full, using only the unit's knowledge and nothing more advanced." The team then chose to build every chart now, with one pull request per chart.

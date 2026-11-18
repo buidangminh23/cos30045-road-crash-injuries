@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 8 Chart Accessibility lecture (Dufour & Meeks, 2024, chapter 6)
-
 // Accessibility: a live region so screen readers announce the tooltip text (Week 8 "screen reader announcement")
 const announceToScreenReader = (text) => {
     if (!document.getElementById("tooltip-announcer")) {

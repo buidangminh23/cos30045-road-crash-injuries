@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), extending the Week 6 tooltip (Exercise 6.4) so one set of functions serves every chart and a tooltip can hold several lines
-
 // Create a hidden tooltip group inside an inner chart and return it
 const createChartTooltip = (chart) => {
     // Start far above the chart, like after mouseleave, so the hidden tooltip never covers a mark

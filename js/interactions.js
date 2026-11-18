@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 6 filters exercise (Exercise 6.2)
-
 // Create one button per filter; only one filter is active at a time and onChange redraws the chart
 const createFilterButtons = (containerId, filters, groupLabel, onChange) => {
     // Accessibility: tell screen readers that the buttons form one group and what it is for (Week 8)

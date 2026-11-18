@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5), following the Week 5 line chart and the Week 6 tooltip exercises
-
 // Scales of the national trend chart (C1)
 const xScaleTrend = d3.scaleLinear();
 const yScaleTrend = d3.scaleLinear();

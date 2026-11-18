@@ -1,5 +1,3 @@
-// Generated with GenAI (Claude Opus 5.5) for the direct labels planned in the Design Book (Section 3.2)
-
 // Move labels apart so no two are closer than minGap, keeping each as near to its mark as possible.
 // Each label is an object with a target y position; the function adds the final labelY.
 const spreadLabels = (labels, minGap, minY, maxY) => {
