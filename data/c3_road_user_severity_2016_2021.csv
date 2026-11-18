@@ -1,0 +1,13 @@
+road_user,road_user_group,group_order,hospitalisations,bed_days,cases,bed_days_per_case
+Pedestrian,Pedestrian,4,15268,162377,15525,10.46
+Heavy transport unknown position,Other road users,5,241,2033,242,8.4
+Car unknown position,Car occupant,1,4694,38232,4713,8.11
+Other or unknown,Other road users,5,3626,25393,3637,6.98
+Heavy transport driver,Other road users,5,2507,16454,2519,6.53
+Pick-up truck or van occupant,Other road users,5,1749,10891,1753,6.21
+Motorcyclist,Motorcyclist,2,52379,309328,52513,5.89
+Bus occupant,Other road users,5,1392,7488,1405,5.33
+Heavy transport passenger,Other road users,5,316,1660,316,5.25
+Car passenger,Car occupant,1,29239,148397,29385,5.05
+Car driver,Car occupant,1,79082,376309,79378,4.74
+Pedal cyclist,Pedal cyclist,3,44736,137545,44792,3.07

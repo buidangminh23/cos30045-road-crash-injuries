@@ -1,0 +1,56 @@
+year,road_user_group,group_order,hospitalisations,national_total,share_pct
+2011,Car occupant,1,16690,34033,49.04
+2011,Motorcyclist,2,7565,34033,22.23
+2011,Pedal cyclist,3,5391,34033,15.84
+2011,Pedestrian,4,2754,34033,8.09
+2011,Other road users,5,1633,34033,4.8
+2012,Car occupant,1,16439,34024,48.32
+2012,Motorcyclist,2,7728,34024,22.71
+2012,Pedal cyclist,3,5621,34024,16.52
+2012,Pedestrian,4,2672,34024,7.85
+2012,Other road users,5,1564,34024,4.6
+2013,Car occupant,1,16588,35001,47.39
+2013,Motorcyclist,2,8018,35001,22.91
+2013,Pedal cyclist,3,6262,35001,17.89
+2013,Pedestrian,4,2657,35001,7.59
+2013,Other road users,5,1476,35001,4.22
+2014,Car occupant,1,16475,35515,46.39
+2014,Motorcyclist,2,8334,35515,23.47
+2014,Pedal cyclist,3,6636,35515,18.69
+2014,Pedestrian,4,2554,35515,7.19
+2014,Other road users,5,1516,35515,4.27
+2015,Car occupant,1,17933,37082,48.36
+2015,Motorcyclist,2,8298,37082,22.38
+2015,Pedal cyclist,3,6716,37082,18.11
+2015,Pedestrian,4,2627,37082,7.08
+2015,Other road users,5,1508,37082,4.07
+2016,Car occupant,1,19105,38963,49.03
+2016,Motorcyclist,2,8526,38963,21.88
+2016,Pedal cyclist,3,6904,38963,17.72
+2016,Pedestrian,4,2743,38963,7.04
+2016,Other road users,5,1685,38963,4.32
+2017,Car occupant,1,19146,39339,48.67
+2017,Motorcyclist,2,8739,39339,22.21
+2017,Pedal cyclist,3,7076,39339,17.99
+2017,Pedestrian,4,2714,39339,6.9
+2017,Other road users,5,1664,39339,4.23
+2018,Car occupant,1,19665,39590,49.67
+2018,Motorcyclist,2,8623,39590,21.78
+2018,Pedal cyclist,3,6959,39590,17.58
+2018,Pedestrian,4,2661,39590,6.72
+2018,Other road users,5,1682,39590,4.25
+2019,Car occupant,1,19268,39866,48.33
+2019,Motorcyclist,2,8924,39866,22.38
+2019,Pedal cyclist,3,7302,39866,18.32
+2019,Pedestrian,4,2713,39866,6.81
+2019,Other road users,5,1659,39866,4.16
+2020,Car occupant,1,17292,37966,45.55
+2020,Motorcyclist,2,8684,37966,22.87
+2020,Pedal cyclist,3,8332,37966,21.95
+2020,Pedestrian,4,2103,37966,5.54
+2020,Other road users,5,1555,37966,4.1
+2021,Car occupant,1,18539,39505,46.93
+2021,Motorcyclist,2,8883,39505,22.49
+2021,Pedal cyclist,3,8163,39505,20.66
+2021,Pedestrian,4,2334,39505,5.91
+2021,Other road users,5,1586,39505,4.01

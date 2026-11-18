@@ -1,0 +1,117 @@
+/* Chart containers scale with the page width (Week 4 responsive SVG container) */
+.responsive-svg-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* Axis tick labels */
+.tick text {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+
+/* Axis labels */
+.axis-label {
+    font-size: 14px;
+    fill: #444444;
+}
+
+/* Annotation labels above the chart */
+.annotation-label {
+    font-size: 13px;
+}
+
+/* Marks of the story charts that show a tooltip */
+.trend-point,
+.month-bar,
+.stack-bar,
+.severity-point,
+.age-bar,
+.state-point {
+    cursor: pointer;
+}
+
+/* Accessibility: a mark reached with the Tab key gets a thick outline (Week 8) */
+.trend-point:focus,
+.month-bar:focus,
+.stack-bar:focus,
+.severity-point:focus,
+.age-bar:focus,
+.state-point:focus {
+    outline: none;
+    stroke: #000000;
+    stroke-width: 4px;
+}
+
+/* Grey context lines cannot be hovered; only the selected state has points */
+.state-line {
+    pointer-events: none;
+}
+
+/* Colour key of the scatter plot */
+.key-label {
+    font-size: 13px;
+    fill: #333333;
+}
+
+/* Labels placed next to the marks instead of a legend */
+.direct-label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Grey bands behind the years with a recording change */
+.break-band {
+    pointer-events: none;
+}
+
+/* Colour key in HTML, shown under a chart only on narrow screens */
+.html-key {
+    display: none;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.html-key li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.html-key-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid;
+    border-radius: 3px;
+}
+
+.html-key-swatch.hollow {
+    border-radius: 50%;
+}
+
+/* On narrow screens long SVG labels and keys would be cut off, so the HTML key replaces them */
+@media (max-width: 600px) {
+    .html-key {
+        display: flex;
+    }
+
+    #road-user-stack .direct-label,
+    .chart-key,
+    .wide-screen-only {
+        display: none;
+    }
+}
+
+/* Message shown when the data cannot be loaded */
+.error-message {
+    padding: 12px;
+    color: #8a1f11;
+    background-color: #fdecea;
+    border-radius: 4px;
+}
