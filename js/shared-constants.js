@@ -10,10 +10,10 @@ const storyMargin = { top: 50, right: 30, bottom: 70, left: 100 };
 const labelledMargin = { top: 70, right: 140, bottom: 70, left: 100 };
 
 // Colours from the Design Book palette (Figure 3.5)
-const storyColor = "#222222";      // the mark that carries the story
-const contextColor = "#858585";    // marks that give context (3.7:1 on white, at least 3:1 for graphics in WCAG)
-const bandColor = "#ececec";       // years affected by a recording change
-const referenceColor = "#555555";  // dashed reference lines and their labels
+const storyColor = "#12355b";      // the mark that carries the story
+const contextColor = "#8593a3";    // marks that give context (3.7:1 on white, at least 3:1 for graphics in WCAG)
+const bandColor = "#edf1f6";       // years affected by a recording change
+const referenceColor = "#5b6675";  // dashed reference lines and their labels
 
 // Road user groups in a fixed order, so each group keeps its place in the stack and its colour (C2 and C3)
 const roadUserGroups = ["Car occupant", "Motorcyclist", "Pedal cyclist", "Pedestrian", "Other road users"];
@@ -26,7 +26,7 @@ const roadUserLabels = {
 };
 const roadUserColor = d3.scaleOrdinal()
     .domain(roadUserGroups)
-    .range(["#56B4E9", "#E69F00", "#009E73", "#D55E00", "#8C8C8C"]);   // Other road users darkened from #999999 to 3.4:1
+    .range(["#3b8fd9", "#e69f00", "#0e9f78", "#d55e00", "#8c96a3"]);   // Other road users darkened from #999999 to 3.4:1
 
 // Filter buttons for the road user stack (Week 6 filter pattern)
 const filtersRoadUser = [

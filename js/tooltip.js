@@ -12,8 +12,8 @@ const createChartTooltip = (chart) => {
 
     tooltip
         .append("rect")
-            .attr("rx", 3)
-            .attr("ry", 3)
+            .attr("rx", 6)
+            .attr("ry", 6)
             .attr("fill", storyColor)
             .attr("fill-opacity", 0.92);
 
@@ -42,7 +42,7 @@ const showChartTooltip = (tooltip, lines, x, y, innerW, chartMargin = storyMargi
 
     // Estimate the box size from the longest line (about 0.56 of the font size per character in Arial)
     const longest = d3.max(lines, d => d.length);
-    const boxWidth = longest * tooltipFontSize * 0.56 + 2 * padding;
+    const boxWidth = longest * tooltipFontSize * 0.6 + 2 * padding;
     const boxHeight = lines.length * lineHeight + 2 * padding;
     tooltip.select("rect")
         .attr("width", boxWidth)

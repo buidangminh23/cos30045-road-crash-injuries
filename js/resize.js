@@ -7,7 +7,7 @@ const resizeCharts = () => {
     tooltipFontSize = chartFontSize;
 
     // Resize the axis, annotation and label text of every chart
-    d3.selectAll(".tick text, .axis-label, .annotation-label, .direct-label, .key-label")
+    d3.selectAll("svg:not(.viz-svg) .tick text, .axis-label, .annotation-label, .direct-label, .key-label")
         .style("font-size", `${chartFontSize}px`);
 
     // Keep the top axis label inside the SVG
