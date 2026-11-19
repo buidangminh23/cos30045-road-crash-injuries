@@ -30,7 +30,7 @@ A guided data story on hospitalised injuries from road crashes in Australia, 201
 ## Coding plan
 
 - Load the seven files once with `Promise.all([d3.csv(...)])`; each row function converts numbers with `+d.value` and the series-break flag with `d.is_series_break === "true"`.
-- C1 uses `d3.line`, C1b `d3.bin`, C2 `d3.stack` with `d3.scaleBand`, C4 a nested `d3.scaleBand` with `d3.scaleLinear`, and C5 `d3.group` with `d3.line`. Road-user colours come from one `d3.scaleOrdinal`.
+- C1 uses `d3.line`, C1b `d3.bin`, C2 `d3.stack` with `d3.scaleBand`, C3 `d3.scaleLinear` on both axes with one circle per road user (hollow below `MIN_CASES`) and a dashed line at `ALL_TRAFFIC_DAYS`, C4 a nested `d3.scaleBand` with `d3.scaleLinear`, and C5 `d3.group` with `d3.line`. Road-user colours come from one `d3.scaleOrdinal`.
 - Buttons use `.on("click")`; tooltips use `.on("mouseenter")` and `.on("mouseleave")`, which also respond to taps; keyboard users get the same tooltip through `.on("focus")`.
 - `js/shared-constants.js` holds the Okabe-Ito palette, `MIN_CASES = 1000`, `ALL_TRAFFIC_DAYS = 5.23`, the transition length and the SVG size.
 
