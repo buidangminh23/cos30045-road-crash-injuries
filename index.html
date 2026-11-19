@@ -1,188 +1,41 @@
-<!doctype html>
-<html lang="en-AU">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="COS30045 Week 11 prototype for a data story about hospitalised road injuries in Australia.">
-    <title>Road Crash Injuries in Australia | Week 11 Prototype</title>
-    <link rel="stylesheet" href="prototype/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive data story on hospitalised injuries from road crashes in Australia, 2011-2021">
+    <title>Hospitalised Injuries from Road Crashes in Australia</title>
+    <link rel="stylesheet" href="css/base.css">
 </head>
-<body id="top">
-    <a href="#overview" class="skip-link">Skip to the story</a>
-    <header class="site-header">
-        <div class="frame header-inner">
-            <a class="brand" href="#top"><span class="brand-mark" aria-hidden="true"></span> Road Injury Australia</a>
-            <nav aria-label="Story questions">
-                <a href="#trend">Trend</a>
-                <a href="#road-users">Road users</a>
-                <a href="#severity">Severity</a>
-                <a href="#age-sex">Age &amp; sex</a>
-                <a href="#states">States</a>
-            </nav>
-        </div>
+<body>
+    <header>
+        <h1>Hospitalised Injuries from Road Crashes in Australia</h1>
     </header>
 
     <main>
-        <section class="hero" aria-labelledby="page-title">
-            <div class="frame hero-inner">
-                <div>
-                    <p class="eyebrow">COS30045 · Week 11 prototype</p>
-                    <h1 id="page-title">Hospitalised Injuries from Road Crashes in Australia</h1>
-                    <p class="hero-lead">Who is hospitalised after a road crash, and how did the pattern change from 2011 to 2021?</p>
-                    <a class="start" href="#trend">Start the story <span aria-hidden="true">↓</span></a>
-                </div>
-                <dl class="key-figures">
-                    <div><dt>2021 hospitalisations</dt><dd>39,505</dd></div>
-                    <div><dt>Change from 2011</dt><dd>+16.08%</dd></div>
-                    <div><dt>Years of BITRE data</dt><dd>11</dd></div>
-                </dl>
-            </div>
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Road crashes are a major cause of injury-related hospitalisation in Australia. Deaths on the road receive most of the attention, but far more people survive a crash with injuries that need hospital care. This page uses the Bureau of Infrastructure and Transport Research Economics (BITRE) hospitalised injury data to show who is being hurt and how this has changed between 2011 and 2021.</p>
+            <ul class="key-numbers">
+                <li><strong>39,505</strong> hospitalisations after road crashes in 2021</li>
+                <li><strong>+16%</strong> more than in 2011 (34,033)</li>
+                <li><strong>10.5 days</strong> is the average hospital stay of an injured pedestrian, twice the 5.2 days for all road users</li>
+            </ul>
+            <p>The page answers five questions in order:</p>
+            <ol class="questions">
+                <li>Are fewer people being hospitalised after road crashes?</li>
+                <li>Which road users are hospitalised, and which groups are growing?</li>
+                <li>Which road users have the most serious injuries?</li>
+                <li>How do age and sex shape who is hurt?</li>
+                <li>Where do injured people live, and how have states changed?</li>
+            </ol>
+            <p>Each question has a chart, a short explanation and a "What this means" box.</p>
+            <div class="instructions">To explore the charts, click the buttons, hover over or tap a bar, point or line, or use the Tab key and the arrow keys. Exact values appear in a box next to the mark.</div>
         </section>
-
-        <div class="frame" id="overview">
-        <section id="trend" class="story-section" aria-labelledby="trend-title">
-            <p class="question-label"><span>Q1</span> National trend</p>
-            <h2 id="trend-title">Are fewer people being hospitalised after road crashes?</h2>
-            <p class="section-intro">Recorded hospitalisations rose from 34,033 to 39,505. The annual trend, monthly distribution and seasonal views put the April 2020 low in context.</p>
-            <div class="chart-grid">
-                <figure class="chart-card" aria-labelledby="title-c1">
-                    <figcaption id="title-c1">Annual hospitalisations</figcaption>
-                    <div id="chart-c1" class="chart-host"></div>
-                </figure>
-                <figure class="chart-card" aria-labelledby="title-c1b">
-                    <figcaption id="title-c1b">Distribution of monthly hospitalisations</figcaption>
-                    <div id="chart-c1b" class="chart-host"></div>
-                </figure>
-            </div>
-            <div class="chart-grid">
-                <figure class="chart-card" aria-labelledby="title-heatmap">
-                    <figcaption id="title-heatmap">Monthly hospitalisations by year</figcaption>
-                    <div id="chart-heatmap" class="chart-host"></div>
-                </figure>
-                <figure class="chart-card" aria-labelledby="title-anomaly">
-                    <figcaption id="title-anomaly">Monthly change from the 2017–2019 average</figcaption>
-                    <div id="chart-anomaly" class="chart-host"></div>
-                </figure>
-            </div>
-        </section>
-
-        <section id="road-users" class="story-section" aria-labelledby="road-users-title">
-            <p class="question-label"><span>Q2</span> Road users</p>
-            <h2 id="road-users-title">Which road users are hospitalised, and which groups are growing?</h2>
-            <p class="section-intro">Car occupants are the largest group. Compare the growth of each group in counts, shares and changes from a common starting point.</p>
-            <div class="primary-chart">
-                <figure class="chart-card" aria-labelledby="title-c2">
-                    <figcaption id="title-c2">Hospitalisations by road-user group</figcaption>
-                    <div class="controls"><label for="road-user-filter">Road user</label><select id="road-user-filter"></select></div>
-                    <div id="chart-c2" class="chart-host"></div>
-                </figure>
-            </div>
-            <div class="chart-grid">
-                <figure class="chart-card" aria-labelledby="title-slope">
-                    <figcaption id="title-slope">2011 and 2021 compared</figcaption>
-                    <div id="chart-slope" class="chart-host"></div>
-                </figure>
-                <figure class="chart-card" aria-labelledby="title-donut">
-                    <figcaption id="title-donut">Share of annual hospitalisations</figcaption>
-                    <div class="controls"><label for="donut-year">Year</label><select id="donut-year"><option value="2011">2011</option><option value="2021" selected>2021</option></select></div>
-                    <div id="chart-donut" class="chart-host"></div>
-                </figure>
-                <figure class="chart-card" aria-labelledby="title-index">
-                    <figcaption id="title-index">Indexed growth since 2011</figcaption>
-                    <div id="chart-index" class="chart-host"></div>
-                </figure>
-            </div>
-        </section>
-
-        <section id="severity" class="story-section" aria-labelledby="severity-title">
-            <p class="question-label"><span>Q3</span> Severity</p>
-            <h2 id="severity-title">Which road users have the longest hospital stays?</h2>
-            <p class="section-intro">Compare how often each road-user category is hospitalised with average length of stay. Length of stay is a proxy for injury severity.</p>
-            <div class="primary-chart">
-                <figure class="chart-card" aria-labelledby="title-c3">
-                    <figcaption id="title-c3">Hospitalisations and bed days per case</figcaption>
-                    <div id="chart-c3" class="chart-host"></div>
-                </figure>
-            </div>
-            <div class="chart-grid">
-                <figure class="chart-card" aria-labelledby="title-lollipop">
-                    <figcaption id="title-lollipop">Road users ranked by bed days per case</figcaption>
-                    <div id="chart-lollipop" class="chart-host"></div>
-                </figure>
-                <figure class="chart-card" aria-labelledby="title-burden">
-                    <figcaption id="title-burden">Share of cases and share of bed days</figcaption>
-                    <div id="chart-burden" class="chart-host"></div>
-                </figure>
-            </div>
-        </section>
-
-        <section id="age-sex" class="story-section" aria-labelledby="age-sex-title">
-            <p class="question-label"><span>Q4</span> Age and sex</p>
-            <h2 id="age-sex-title">How do age and recorded sex shape who is hurt?</h2>
-            <p class="section-intro">Compare the numbers by age, then switch the measure to investigate the length of hospital stays.</p>
-            <div class="chart-grid">
-                <figure class="chart-card" aria-labelledby="title-pyramid">
-                    <figcaption id="title-pyramid">Hospitalisations by age and sex</figcaption>
-                    <div id="chart-pyramid" class="chart-host"></div>
-                </figure>
-                <figure class="chart-card" aria-labelledby="title-c4">
-                    <figcaption id="title-c4">Counts and bed days per case</figcaption>
-                    <div class="controls"><label for="measure-filter">Measure</label><select id="measure-filter"></select><label for="sex-filter">Recorded sex</label><select id="sex-filter"></select></div>
-                    <div id="chart-c4" class="chart-host"></div>
-                </figure>
-            </div>
-            <div class="chart-grid">
-                <figure class="chart-card" aria-labelledby="title-ratio">
-                    <figcaption id="title-ratio">Male-to-female ratio by age</figcaption>
-                    <div id="chart-ratio" class="chart-host"></div>
-                </figure>
-            </div>
-        </section>
-
-        <section id="states" class="story-section" aria-labelledby="states-title">
-            <p class="question-label"><span>Q5</span> States and territories</p>
-            <h2 id="states-title">How have trends changed by state of residence?</h2>
-            <p class="section-intro">Select a state to inspect its trend. Victoria and New South Wales have recording changes. First Nations counts are sensitive to changes in how Indigenous status was recorded.</p>
-            <div class="primary-chart">
-                <figure class="chart-card" aria-labelledby="title-c5">
-                    <figcaption id="title-c5">Annual hospitalisations by state</figcaption>
-                    <div class="controls"><label for="state-filter">State or territory</label><select id="state-filter"></select></div>
-                    <div id="chart-c5" class="chart-host"></div>
-                </figure>
-            </div>
-            <div class="chart-grid">
-                <figure class="chart-card" aria-labelledby="title-state-change">
-                    <figcaption id="title-state-change">Change in hospitalisations by state</figcaption>
-                    <div id="chart-state-change" class="chart-host"></div>
-                </figure>
-                <figure class="chart-card" aria-labelledby="title-first-nations">
-                    <figcaption id="title-first-nations">Recorded First Nations hospitalisations</figcaption>
-                    <div id="chart-first-nations" class="chart-host"></div>
-                </figure>
-                <figure class="chart-card" aria-labelledby="title-waterfall">
-                    <figcaption id="title-waterfall">State contributions to combined change</figcaption>
-                    <div id="chart-waterfall" class="chart-host"></div>
-                </figure>
-            </div>
-        </section>
-
-        <section class="story-section data-notes" id="about-data">
-            <h2>About the data</h2>
-            <p>The charts use aggregated BITRE hospitalisation counts for road traffic crashes. The counts describe the burden recorded by hospitals. Comparing risk would require population or exposure data. Bed days per case use the 2016–2021 period after a recording rule change.</p>
-        </section>
-        </div>
     </main>
 
-    <footer class="site-footer">
-        <div class="frame footer-inner">
-            <span>COS30045 · Group 5</span>
-            <a href="https://www.bitre.gov.au/publications/ongoing/hospitalised-injury">BITRE Hospitalised Injury Data</a>
-            <a href="https://github.com/buidangminh23/cos30045-road-crash-injuries/blob/main/README.md">Week 11 design draft</a>
-        </div>
+    <footer>
+        <p>Data source: <a href="https://www.bitre.gov.au/publications/ongoing/hospitalised-injury">BITRE Hospitalised Injury Data</a></p>
     </footer>
-
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="prototype/charts.js"></script>
-    <script src="prototype/previews.js"></script>
 </body>
 </html>

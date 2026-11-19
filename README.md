@@ -1,73 +1,73 @@
-# Week 11 presentation and Q&A
+# Who ends up in hospital after a road crash?
 
-COS30045 Data Visualisation · Group 5 · Team member 1 · Design draft
+COS30045 Data Visualisation · Group 5 · Week 11 stand-up (24 November 2026)
 
-**Hospitalised injuries from road crashes in Australia, 2011–2021** · [Open the interactive prototype](https://buidangminh23.github.io/cos30045-road-crash-injuries/)
+A guided data story on hospitalised injuries from road crashes in Australia, 2011–2021, using the BITRE hospitalised injury data. Road crash hospitalisations rose from 34,033 in 2011 to 39,505 in 2021 (+16%), and injured pedestrians stay about 10.5 days in hospital, twice the 5.2 days for all road users.
 
-## Visualisation Design
+## Status at Week 11
 
-The story starts with the national pattern, then moves through road users, length of stay, age and recorded sex, and state of residence. BITRE recorded 34,033 traffic hospitalisations in 2011 and 39,505 in 2021, a rise of 16.08%. The figures are recorded hospitalisations. Assessing risk would require population or exposure data.
-
-| Question | Colour chart prototypes | Main encoding and rationale |
-| --- | --- | --- |
-| **Q1. Has the number changed?** | Annual line, monthly histogram, month-by-year heatmap, monthly anomaly columns. | Position shows the annual trend and the distribution of monthly counts. Heatmap intensity shows seasonality. Diverging columns show the direction and size of each 2020–2021 month's departure from the same-month 2017–2019 average. |
-| **Q2. Which groups drive the change?** | Stacked counts, endpoint slope chart, share donut, indexed lines. | Use one categorical colour per road-user group throughout. The stack shows growth and composition. Endpoint slope and indexed lines make differing growth rates easier to compare. The donut answers the share question for one year at a time. |
-| **Q3. Who stays longest?** | Severity scatter, ranked lollipop, case-share versus bed-day-share dumbbell. | The scatter contrasts the number of hospitalisations with average stay. Hollow marks flag estimates based on fewer than 1,000 cases. Sorted positions make length of stay comparable. On the dumbbell, the gap exposes cases where a group's share of bed days exceeds its share of cases. |
-| **Q4. How do age and recorded sex shape who is hurt?** | Age pyramid, grouped bars with measure switch, sex-ratio chart. | The pyramid shows the profile on either side of a common centre. Grouped bars compare two values from the same baseline within each age group. The ratio shows the gap directly, using parity as a reference. |
-| **Q5. How do state trends differ?** | State lines, diverging state-change bars, First Nations area, state contribution waterfall. | Position and line weight help readers follow one state in the trend view. Diverging bars separate increases and decreases. The waterfall adds the contributions into a single net change. The area shows recorded First Nations counts alongside the recording caveat. |
-
-Use a zero baseline for count and grouped bars. Label the waterfall's truncated scale. Label axes, units, groups and recording changes. Keep the national line navy, use orange for emphasis, and use blue, amber, teal, vermilion and slate to distinguish road-user categories. Support colour with legends and mark shape. Bar and divergence directions also communicate meaning.
-
-## Interaction Design
-
-Readers start with the overview and go straight to the comparison they need. Focused marks expose exact values and caveats. The prototype lets users try the planned high-value controls without navigating away from the story.
-
-| Control | Planned response |
+| Done | Planned for Week 12 (1 December 2026) |
 | --- | --- |
-| Question links | Jump to one of the five questions and retain the reading order within it. |
-| Road-user dropdown | Switch the stack between all groups and one group's yearly counts. The scale keeps zero and updates for the selected scope. |
-| Donut year | Switch between 2011 and 2021. Keep colours tied to the same categories. |
-| Age and sex controls | Switch the y-axis and bars between hospitalisations and bed days per case. The sex control filters the visible bars while preserving comparability within the selected measure. |
-| State dropdown | Switch from the state overview to the selected state and make small series easier to see. |
-| Data marks | Provide details through hover or keyboard focus. Include units and relevant recording caveats. |
+| KNIME workflow (88 nodes) and its eight CSV files in `data/` | Six D3.js charts with interactions |
+| Introduction page (`index.html`, `css/base.css`) | Responsive and accessibility features |
+| Wireframes, storyboard and chart mock-ups in `figures/design/` | Usability testing |
+| Shared constants for the charts in `js/shared-constants.js` | Deployment to the COS30045 Mercury server |
 
-## Website Design
+## Planned charts
 
-A persistent desktop navigation bar sits above a navy hero with headline figures. The five question sections use orange accents and white chart cards on a light canvas. Primary comparisons appear first, followed by supporting chart cards. Short introductions explain what to look for before each group of charts. The source and limits of the data sit after the five questions.
+| Question | Chart | Data file (rows) |
+| --- | --- | --- |
+| Q1 Has the number changed? | C1 line chart of yearly totals, with grey bands for the 2011 and 2017–2021 recording changes | `c1_national_by_year.csv` (11) |
+| Q1 How unusual was 2020? | C1b histogram of 132 monthly counts, April 2020 highlighted | `c1b_national_by_month.csv` (132) |
+| Q2 Which road users, and which are growing? | C2 stacked bar chart from a zero baseline, with a button for each road-user group | `c2_road_user_group_by_year.csv` (55) |
+| Q3 Which road users have the most serious injuries? | C3 scatter plot of hospitalisations against bed days per case; hollow points below 1,000 cases | `c3_road_user_severity_2016_2021.csv` (12) |
+| Q4 How do age and sex shape who is hurt? | C4 grouped bar chart with Hospitalisations / Bed days per case and Both / Female / Male buttons | `c4_age_sex.csv` (14) |
+| Q5 Where do injured people live? | C5 state multi-line chart, selected state highlighted, Vic 2012 and NSW 2017 recording changes marked | `c5_state_by_year.csv` (88) |
+| Q5 First Nations | Text only, no chart, because recording of Indigenous status changed over the period | `c5b_first_nations_by_year.csv` (11) |
 
-On phones, the links wrap and the charts stack into one column. Keep the filter labels beside their controls and keep details underneath the relevant chart. Use a consistent layout so users can move from the national story to a state comparison without learning a new page structure.
+`data/road-user-trend.csv` (143 rows) is also written by the KNIME workflow. It is a compatibility file from an earlier version of the page and is not loaded.
 
-## Prototype and sketches
+## Coding plan
 
-The [coded prototype](https://buidangminh23.github.io/cos30045-road-crash-injuries/) shows the latest design across all five questions. It draws the charts from aggregate CSVs, with no image dependency for the working views.
+- Load the seven files once with `Promise.all([d3.csv(...)])`; each row function converts numbers with `+d.value` and the series-break flag with `d.is_series_break === "true"`.
+- C1 uses `d3.line`, C1b `d3.bin`, C2 `d3.stack` with `d3.scaleBand`, C4 a nested `d3.scaleBand` with `d3.scaleLinear`, and C5 `d3.group` with `d3.line`. Road-user colours come from one `d3.scaleOrdinal`.
+- Buttons use `.on("click")`; tooltips use `.on("mouseenter")` and `.on("mouseleave")`, which also respond to taps; keyboard users get the same tooltip through `.on("focus")`.
+- `js/shared-constants.js` holds the Okabe-Ito palette, `MIN_CASES = 1000`, `ALL_TRAFFIC_DAYS = 5.23`, the transition length and the SVG size.
 
-![Desktop prototype showing the navy introduction, headline figures and first pair of charts](figures/design/week11-desktop.png)
+## Palette
 
-![Colour chart sketches showing the road-user stack, endpoint comparison, share donut and indexed trend](figures/design/week11-colour-charts.png)
+| Use | Colour |
+| --- | --- |
+| Car occupants / Motorcyclists | `#56B4E9` / `#E69F00` |
+| Pedal cyclists / Pedestrians | `#009E73` / `#D55E00` |
+| Other road users | `#8C8C8C` |
+| Female / Male | `#CC79A7` / `#0072B2` |
+| Story line and active button / Context grey / Series-break band | `#222222` / `#858585` / `#ECECEC` |
 
-![Mobile prototype showing the stacked introduction and first chart](figures/design/week11-mobile.png)
+## Sketches
 
-## Plan for coding
+![Desktop wireframe, header to Q2](figures/design/fig3_1a_wireframe_desktop_top.png)
 
-### Data to load
+![Desktop wireframe, Q3 to footer](figures/design/fig3_1b_wireframe_desktop_continued.png)
 
-Load the aggregate BITRE CSVs with `d3.csv`, convert numeric fields, and parse recording flags explicitly. Keep a single source of truth for group order, colours and units. Reuse the same rows across related charts.
+![Mobile wireframes](figures/design/fig3_2_wireframe_mobile.png)
 
-| CSV | Expected rows | Charts and fields |
-| --- | ---: | --- |
-| `c1_national_by_year.csv` | 11 | Annual line. Use year, hospitalisations and series-break flag. |
-| `c1b_national_by_month.csv` | 132 | Histogram, heatmap and anomalies. Use year, month number and hospitalisations. Calculate the 2017–2019 baseline separately for each month. |
-| `c2_road_user_group_by_year.csv` | 55 | Stack, slope, donut and index. Use year, group, count, national total and share. Index each group to its own 2011 count. |
-| `c3_road_user_severity_2016_2021.csv` | 12 | Scatter, lollipop and dumbbell. Use road-user category, group, hospitalisations, cases, bed days and days per case. Aggregate by road-user group and compute shares from the same total. |
-| `c4_age_sex.csv` | 14 | Pyramid, grouped bars and ratio. Use age order, recorded sex, hospitalisations and days per case. |
-| `c5_state_by_year.csv` | 88 | Lines, change bars and waterfall. Use state, year, count and series-break flag. Compute changes from each state's 2011 count. |
-| `c5b_first_nations_by_year.csv` | 11 | First Nations area. Use year and count, with the status-not-stated figures for context. |
+![Storyboard](figures/design/fig3_3_storyboard.png)
 
-### Coding tasks
+![C1 and C1b mock-ups](figures/design/fig3_4a_mockup_c1_c1b.png)
 
-1. Build the semantic layout, question navigation and responsive chart cards in `index.html` and `prototype/styles.css`.
-2. Draw the six core comparisons and wire the road-user, measure, sex and state controls in `prototype/charts.js`. Build the twelve supporting previews and donut year switch in `prototype/previews.js`.
-3. For the final implementation, consolidate shared margins, dimensions, palette, formats, road-user order, the 1,000-case threshold and the 5.23-day all-traffic reference. Share CSV reads, chart details and error states across the chart modules.
-4. Reconcile annual totals and group shares, check the sign of changes and test every selector, pointer and keyboard interaction at desktop and mobile widths.
+![C2 and C3 mock-ups](figures/design/fig3_4b_mockup_c2_c3.png)
 
-Data source: [BITRE Hospitalised Injury Data](https://www.bitre.gov.au/publications/ongoing/hospitalised-injury).
+![C4 mock-ups](figures/design/fig3_4c_mockup_c4.png)
+
+![C5 mock-ups](figures/design/fig3_4d_mockup_c5.png)
+
+![Colour palette](figures/design/fig3_5_colour_palette.png)
+
+## Run locally
+
+Serve the folder with any static server, for example `npx http-server -p 8080`, and open `http://localhost:8080`.
+
+## Data source
+
+Bureau of Infrastructure and Transport Research Economics. (2023). *Hospitalised injury* [Data set]. https://www.bitre.gov.au/resource/road-safety/hospitalised-injury
