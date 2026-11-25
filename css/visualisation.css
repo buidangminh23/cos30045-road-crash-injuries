@@ -1,0 +1,267 @@
+/* Chart containers scale with the page width (Week 4 responsive SVG container) */
+.responsive-svg-container {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    max-width: 1000px;
+}
+
+/* Axis tick labels */
+.responsive-svg-container svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+    font-family: var(--font);
+}
+
+.responsive-svg-container svg text {
+    font-family: var(--font);
+}
+
+.tick text {
+    font-family: var(--font);
+    font-size: 14px;
+    fill: var(--muted);
+}
+
+.tick line,
+.domain {
+    stroke: #cbd5e1;
+}
+
+/* Axis labels */
+.axis-label {
+    font-size: 14px;
+    font-weight: 600;
+    fill: var(--muted);
+}
+
+/* Annotation labels above the chart */
+.annotation-label {
+    font-size: 13px;
+}
+
+/* Marks of the story charts that show a tooltip */
+.trend-point,
+.month-bar,
+.stack-bar,
+.severity-point,
+.age-bar,
+.state-point {
+    cursor: pointer;
+}
+
+/* Accessibility: a mark reached with the Tab key gets a thick outline (Week 8) */
+.trend-point:focus,
+.month-bar:focus,
+.stack-bar:focus,
+.severity-point:focus,
+.age-bar:focus,
+.state-point:focus {
+    outline: none;
+    stroke: #000000;
+    stroke-width: 4px;
+}
+
+/* Grey context lines cannot be hovered; only the selected state has points */
+.state-line {
+    pointer-events: none;
+}
+
+/* Colour key of the scatter plot */
+.key-label {
+    font-size: 13px;
+    fill: #333333;
+}
+
+/* Labels placed next to the marks instead of a legend */
+.direct-label {
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* Grey bands behind the years with a recording change */
+.break-band {
+    pointer-events: none;
+}
+
+/* Colour key in HTML, shown under a chart only on narrow screens */
+.html-key {
+    display: none;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.html-key li {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.html-key-swatch {
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    border: 2px solid;
+    border-radius: 3px;
+}
+
+.html-key-swatch.hollow {
+    border-radius: 50%;
+}
+
+/* On narrow screens long SVG labels and keys would be cut off, so the HTML key replaces them */
+@media (max-width: 600px) {
+    .html-key {
+        display: flex;
+    }
+
+    #road-user-stack .direct-label,
+    .chart-key,
+    .wide-screen-only {
+        display: none;
+    }
+}
+
+/* Message shown when the data cannot be loaded */
+.error-message {
+    padding: 16px;
+    color: #8a1f11;
+    background-color: #fdecea;
+    border-radius: 4px;
+}
+
+.chart-tooltip text {
+    font-family: var(--font);
+}
+
+.viz-svg {
+    font-size: var(--vb-font, 13px);
+}
+
+.viz-label {
+    font-size: var(--vb-font, 13px);
+    fill: var(--ink-2);
+}
+
+.viz-label-sm {
+    font-size: var(--vb-font-sm, 12px);
+    fill: var(--ink-2);
+    font-weight: 600;
+}
+
+.viz-label-xl {
+    font-size: calc(var(--vb-font-lg, 18px) * 2.1);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    fill: var(--ink);
+}
+
+.viz-muted {
+    fill: var(--muted);
+}
+
+.viz-strong {
+    font-weight: 700;
+    fill: var(--ink);
+}
+
+.viz-grid .tick line {
+    stroke: #e6ebf2;
+}
+
+.viz-grid .tick text,
+.viz-axis .tick text {
+    font-size: var(--vb-font-sm, 12px);
+}
+
+.viz-mark {
+    cursor: pointer;
+    transition: opacity 0.2s ease, filter 0.2s ease;
+}
+
+.viz-mark:focus {
+    outline: none;
+}
+
+.viz-mark.is-hot,
+.viz-mark:focus-visible {
+    filter: drop-shadow(0 2px 6px rgba(15, 31, 51, 0.35));
+    stroke: var(--ink);
+    stroke-width: 3px;
+}
+
+.hm-cell.is-hot,
+.hm-cell:focus-visible {
+    stroke-width: 2.5px;
+}
+
+.viz-tooltip {
+    position: fixed;
+    z-index: 80;
+    min-width: 180px;
+    max-width: 280px;
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #e6eef8;
+    background: rgba(11, 31, 58, 0.96);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    box-shadow: 0 12px 32px rgba(11, 31, 58, 0.35);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
+}
+
+.viz-tooltip.is-visible {
+    opacity: 1;
+    transform: none;
+}
+
+.viz-tooltip-title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+    font-weight: 700;
+    color: #fff;
+}
+
+.viz-tooltip-swatch {
+    flex: none;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.25);
+}
+
+.viz-tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.viz-tooltip-row strong {
+    color: #fff;
+}
+
+.donut-host {
+    max-width: 420px;
+}
+
+.html-key.html-key-always {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    font-size: 14px;
+}
+
+.filters-compact {
+    justify-content: center;
+}

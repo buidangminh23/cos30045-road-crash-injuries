@@ -1,22 +1,54 @@
-const ROAD_USER_COLOURS = {
-  "Car occupant": "#56B4E9", "Motorcyclist": "#E69F00",
-  "Pedal cyclist": "#009E73", "Pedestrian": "#D55E00",
-  "Other road users": "#8C8C8C"
-};
-const UI_COLOURS = {
-  female: "#CC79A7", male: "#0072B2",
-  story: "#222222", context: "#858585", seriesBreakBand: "#ECECEC"
-};
-const MIN_CASES = 1000, ALL_TRAFFIC_DAYS = 5.23, TRANSITION_MS = 500;
-const roadUserColour = d3.scaleOrdinal()
-  .domain(Object.keys(ROAD_USER_COLOURS))
-  .range(Object.values(ROAD_USER_COLOURS));
+// Size of the story charts C1 to C5 (margin convention from Week 5)
+const storyWidth = 700;
+const storyHeight = 400;
+const storyMargin = { top: 50, right: 30, bottom: 70, left: 100 };
 
-const sexColour = d3.scaleOrdinal()
-  .domain(["Female", "Male"])
-  .range([UI_COLOURS.female, UI_COLOURS.male]);
+// Charts with direct labels at the right end need a wider right margin, and a taller top margin
+// so the labels above the chart do not touch the axis label on a phone
+const labelledMargin = { top: 70, right: 140, bottom: 70, left: 100 };
 
-const SVG_WIDTH = 700, SVG_HEIGHT = 400;
-const MARGIN = { top: 40, right: 120, bottom: 50, left: 70 };
-const INNER_WIDTH = SVG_WIDTH - MARGIN.left - MARGIN.right;
-const INNER_HEIGHT = SVG_HEIGHT - MARGIN.top - MARGIN.bottom;
+// Colours from the Design Book palette (Figure 3.5)
+const storyColor = "#12355b";      // the mark that carries the story
+const contextColor = "#8593a3";    // marks that give context (3.7:1 on white, at least 3:1 for graphics in WCAG)
+const bandColor = "#edf1f6";       // years affected by a recording change
+const referenceColor = "#5b6675";  // dashed reference lines and their labels
+
+// Road user groups in a fixed order, so each group keeps its place in the stack and its colour (C2 and C3)
+const roadUserGroups = ["Car occupant", "Motorcyclist", "Pedal cyclist", "Pedestrian", "Other road users"];
+const roadUserLabels = {
+    "Car occupant": "Car occupants",
+    "Motorcyclist": "Motorcyclists",
+    "Pedal cyclist": "Cyclists",
+    "Pedestrian": "Pedestrians",
+    "Other road users": "Other road users"
+};
+const roadUserColor = d3.scaleOrdinal()
+    .domain(roadUserGroups)
+    .range(["#3b8fd9", "#e69f00", "#0e9f78", "#d55e00", "#8c96a3"]);   // Other road users darkened from #999999 to 3.4:1
+
+// Filter buttons for the road user stack (Week 6 filter pattern)
+const filtersRoadUser = [
+    { id: "All", label: "All road users", isActive: true },
+    ...roadUserGroups.map(group => ({ id: group, label: roadUserLabels[group], isActive: false }))
+];
+
+// Average hospital stay of all traffic cases, 2016-2021 (total bed days / total cases), used by C3 and C4
+const allTrafficBedDays = 5.23;
+
+// Shared formats and settings
+const formatNumber = d3.format(",");
+const yearTicks = [2011, 2013, 2015, 2017, 2019, 2021];
+const transitionDuration = 500;
+
+// Accessibility: chart text size in SVG units, scaled with the window width (Week 8 "responsive text size").
+// The SVG shrinks with the screen, so small screens need a larger SVG font: 26 units in a 700-unit-wide
+// SVG shown 328px wide is about 12px, and 11 units in a 968px-wide chart is about 15px.
+const fontSizeScale = d3.scaleLinear()
+    .domain([360, 1000])
+    .range([26, 11])
+    .clamp(true);
+let chartFontSize = 11;
+let tooltipFontSize = 11;
+
+// Functions that charts register to redo their layout (label spacing, key position) when the text size changes
+const chartResizeHandlers = [];
