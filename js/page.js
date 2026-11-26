@@ -5,7 +5,7 @@ const animateCount = (el) => {
     const decimals = +(el.dataset.decimals || 0);
     const prefix = el.dataset.prefix || "";
     const suffix = el.dataset.suffix || "";
-    const format = d3.format(decimals ? `,.${decimals}f` : ",");
+    const format = d3.format(`,.${decimals}f`);
     if (prefersReducedMotion) {
         el.textContent = `${prefix}${format(target)}${suffix}`;
         return;
