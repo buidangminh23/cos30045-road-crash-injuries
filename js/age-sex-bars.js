@@ -95,7 +95,7 @@ const drawAgeSexBars = (data) => {
             .attr("height", 0)
             .attr("fill", d => sexColor(d.sex));
 
-    innerChart
+    const xAxisGroup = innerChart
         .append("g")
             .attr("class", "axis-x")
             .attr("transform", `translate(0, ${innerH})`)
@@ -109,7 +109,7 @@ const drawAgeSexBars = (data) => {
             .attr("class", "axis-label axis-label-left")
             .attr("x", 0)
             .attr("y", 20);
-    svg
+    const xAxisLabel = svg
         .append("text")
             .attr("class", "axis-label axis-label-bottom")
             .text("Age group (years)")
@@ -243,6 +243,11 @@ const drawAgeSexBars = (data) => {
     chartResizeHandlers.push(() => {
         keyRows.attr("transform", (d, i) => `translate(${i * chartFontSize * 6}, 0)`);
         key.attr("transform", `translate(${innerW - chartFontSize * 11}, -30)`);
+        const isCrowded = chartFontSize * 0.6 * 5 > xScaleAge.step() * 0.9;
+        const extraHeight = isCrowded ? 40 : 0;
+        svg.attr("viewBox", `0 0 ${storyWidth} ${storyHeight + extraHeight}`);
+        xAxisGroup.selectAll(".tick text").attr("dy", (d, i) => isCrowded && i % 2 === 1 ? "1.9em" : "0.71em");
+        xAxisLabel.attr("y", storyHeight + extraHeight - 8);
     });
     resizeCharts();
 };

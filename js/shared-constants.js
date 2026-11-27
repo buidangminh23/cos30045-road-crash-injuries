@@ -9,7 +9,7 @@ const labelledMargin = { top: 70, right: 140, bottom: 70, left: 100 };
 
 // Colours from the Design Book palette (Figure 3.5)
 const storyColor = "#12355b";      // the mark that carries the story
-const contextColor = "#8593a3";    // marks that give context (3.7:1 on white, at least 3:1 for graphics in WCAG)
+const contextColor = "#8593a3";    // marks that give context (3.1:1 on white, at least 3:1 for graphics in WCAG)
 const bandColor = "#edf1f6";       // years affected by a recording change
 const referenceColor = "#5b6675";  // dashed reference lines and their labels
 
@@ -24,7 +24,7 @@ const roadUserLabels = {
 };
 const roadUserColor = d3.scaleOrdinal()
     .domain(roadUserGroups)
-    .range(["#3b8fd9", "#e69f00", "#0e9f78", "#d55e00", "#8c96a3"]);   // Other road users darkened from #999999 to 3.4:1
+    .range(["#3b8fd9", "#e69f00", "#0e9f78", "#d55e00", "#8a94a1"]);   // Other road users darkened from #999999 to 3.07:1
 
 // Filter buttons for the road user stack (Week 6 filter pattern)
 const filtersRoadUser = [
@@ -41,11 +41,11 @@ const yearTicks = [2011, 2013, 2015, 2017, 2019, 2021];
 const transitionDuration = 500;
 
 // Accessibility: chart text size in SVG units, scaled with the window width (Week 8 "responsive text size").
-// The SVG shrinks with the screen, so small screens need a larger SVG font: 26 units in a 700-unit-wide
-// SVG shown 328px wide is about 12px, and 11 units in a 968px-wide chart is about 15px.
+// The SVG shrinks with the screen, so small screens need a larger SVG font: on a 360px phone the
+// 700-unit-wide SVG is shown 294px wide, so 29 units is about 12.2px; 11 units in a 968px-wide chart is about 15px.
 const fontSizeScale = d3.scaleLinear()
     .domain([360, 1000])
-    .range([26, 11])
+    .range([29, 11])
     .clamp(true);
 let chartFontSize = 11;
 let tooltipFontSize = 11;

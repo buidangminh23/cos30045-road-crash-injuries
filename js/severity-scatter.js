@@ -55,13 +55,12 @@ const drawSeverityScatter = (data) => {
             .attr("y2", yScaleSeverity(allTrafficBedDays))
             .attr("stroke", referenceColor)
             .attr("stroke-dasharray", "6 4");
-    innerChart
+    const referenceLabel = innerChart
         .append("text")
             .attr("class", "annotation-label")
-            .text(`All traffic: ${allTrafficBedDays} days`)
-            .attr("x", xScaleSeverity(8000))
-            .attr("y", yScaleSeverity(allTrafficBedDays) - 8)
             .attr("fill", referenceColor);
+    referenceLabel.append("tspan").text("All traffic:").attr("x", xScaleSeverity(8000));
+    referenceLabel.append("tspan").text(`${allTrafficBedDays} days`).attr("x", xScaleSeverity(8000)).attr("dy", "1.15em");
 
     // The y axis sits 6 px left of x = 0 so points with few hospitalisations are not hidden behind it
     innerChart
@@ -123,8 +122,7 @@ const drawSeverityScatter = (data) => {
             .attr("x", xScaleSeverity(pedestrian.hospitalisations) + 12)
             .attr("y", yScaleSeverity(pedestrian.bedDaysPerCase) + 24)
             .attr("fill", storyColor);
-    pedestrianLabel.append("tspan").text(`${pedestrian.bedDaysPerCase} days per case,`);
-    pedestrianLabel.append("tspan").text("twice the average").attr("x", xScaleSeverity(pedestrian.hospitalisations) + 12).attr("dy", "1.2em");
+    pedestrianLabel.text(`${pedestrian.bedDaysPerCase} days, twice the average`);
 
     // Key for the colours and the hollow points, placed in the empty top right corner
     const keyItems = roadUserGroups
@@ -181,6 +179,8 @@ const drawSeverityScatter = (data) => {
     chartResizeHandlers.push(() => {
         keyRows.attr("transform", (d, i) => `translate(0, ${i * chartFontSize * 1.6})`);
         key.attr("transform", `translate(${innerW - chartFontSize * 15}, 0)`);
+        referenceLabel.attr("y", yScaleSeverity(allTrafficBedDays) - 8 - chartFontSize * 1.15);
+        pedestrianLabel.attr("y", yScaleSeverity(pedestrian.bedDaysPerCase) + chartFontSize * 1.3);
     });
     resizeCharts();
 };

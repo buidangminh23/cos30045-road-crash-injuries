@@ -32,7 +32,7 @@ const drawMonthlyHistogram = (data) => {
         .domain([2300, 3900])
         .range([0, innerW]);
     yScaleMonths
-        .domain([0, d3.max(bins, d => d.length)])
+        .domain([0, d3.max(bins, d => d.length) * 1.3])
         .range([innerH, 0])
         .nice();
 

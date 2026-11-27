@@ -179,7 +179,7 @@ p {
 .nav-q {
     font-size: 11px;
     font-weight: 700;
-    opacity: 0.7;
+    opacity: 0.85;
 }
 
 .scroll-progress {
@@ -616,6 +616,7 @@ main {
 .about-card p {
     font-size: 15px;
     color: var(--ink-2);
+    overflow-wrap: anywhere;
 }
 
 .site-footer {

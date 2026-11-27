@@ -73,8 +73,9 @@ const drawNationalTrend = (data) => {
         .append("text")
             .attr("class", "annotation-label")
             .text("Grey: recording changes")
-            .attr("x", xScaleTrend(2016.5) + 6)
+            .attr("x", innerW - 6)
             .attr("y", innerH - 12)
+            .attr("text-anchor", "end")
             .attr("fill", referenceColor);
 
     // Axes with whole years and thousands separators
