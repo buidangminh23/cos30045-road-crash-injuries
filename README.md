@@ -28,20 +28,8 @@ The code is split by role: data loading, one file per chart, interaction and acc
 | `js/severity-scatter.js` | Visualisation | C3 scatter plot (Q3) |
 | `js/age-sex-bars.js` | Visualisation | C4 grouped bar chart with measure and sex buttons (Q4) |
 | `js/state-lines.js` | Visualisation | C5 state and territory line chart (Q5) |
-| `js/month-heatmap.js` | Visualisation | Calendar heatmap of monthly hospitalisations (Q1) |
-| `js/road-user-slope.js` | Visualisation | Slope chart, 2011 vs 2021 by road user group (Q2) |
-| `js/share-donut.js` | Visualisation | Donut chart of road user shares with a year toggle (Q2) |
-| `js/bed-day-lollipop.js` | Visualisation | Ranked lollipop chart of bed days per case (Q3) |
-| `js/age-pyramid.js` | Visualisation | Population pyramid by age group and sex (Q4) |
-| `js/state-change-bars.js` | Visualisation | Diverging bar chart of change by state, 2011-2021 (Q5) |
-| `js/first-nations-area.js` | Visualisation | Area chart of First Nations hospitalisations (Q5) |
 | `js/deep-analysis.js` | Analysis | Calculates every "Deeper analysis" figure from the CSV files in the browser (anomalies, growth rates, shares, ratios, contributions) |
-| `js/monthly-anomaly.js` | Visualisation | Diverging columns: 2020-2021 months vs the 2017-2019 same-month average (Q1) |
-| `js/road-user-index.js` | Visualisation | Indexed line chart, 2011 = 100 (Q2) |
-| `js/burden-dumbbell.js` | Visualisation | Dumbbell chart: share of cases vs share of bed days (Q3) |
-| `js/sex-ratio.js` | Visualisation | Males per female by age group (Q4) |
-| `js/state-waterfall.js` | Visualisation | Waterfall of each state's contribution to the combined change (Q5) |
-| `js/viz-kit.js` | Interaction | HTML tooltip, responsive text and compact layouts for the newer charts |
+| `js/viz-kit.js` | Interaction | HTML tooltip, responsive text and animation timing shared by the page |
 | `js/page.js` | Presentation | Hero sparkline, animated key numbers, scroll progress, section highlighting |
 | `js/interactions.js` | Interaction | Reusable filter buttons (Week 6 pattern, with ARIA from Week 8) |
 | `js/tooltip.js` | Interaction | Shared multi-line SVG tooltip |
@@ -78,9 +66,9 @@ All data processing is done in the KNIME workflow `knime/Group5_RoadCrashInjurie
 | `data/c3_road_user_severity_2016_2021.csv` | 12 | `road_user`, `road_user_group`, `group_order`, `hospitalisations`, `bed_days`, `cases`, `bed_days_per_case` | C3 scatter plot |
 | `data/c4_age_sex.csv` | 14 | `age_group`, `sex`, `hospitalisations_2011_2021`, `bed_days_2016_2021`, `cases_2016_2021`, `bed_days_per_case_2016_2021`, `age_order` | C4 grouped bar |
 | `data/c5_state_by_year.csv` | 88 | `year`, `state`, `hospitalisations`, `bed_days`, `is_series_break`, `state_name` | C5 state trend |
-| `data/c5b_first_nations_by_year.csv` | 11 | `year`, `first_nations`, `non_indigenous`, `national_total`, `status_not_stated`, `first_nations_share_pct` | Q5 text and area chart |
+| `data/c5b_first_nations_by_year.csv` | 11 | `year`, `first_nations`, `non_indigenous`, `national_total`, `status_not_stated`, `first_nations_share_pct` | Q5 text |
 
-The page reads the C1 to C5 files; the First Nations file is used for the numbers in the Q5 text and the First Nations area chart. `is_series_break` holds the text `true` or `false`.
+The page reads the C1 to C5 files; the First Nations numbers appear only as text in Q5, not as a chart. `is_series_break` holds the text `true` or `false`.
 
 KNIME nodes for `road-user-trend.csv` (all branches start from the cleaned national trunk, nodes 1 to 23):
 

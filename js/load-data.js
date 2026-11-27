@@ -29,8 +29,6 @@ d3.csv("data/c1b_national_by_month.csv", d => ({
 }))
     .then(data => {
         drawMonthlyHistogram(data);
-        registerViz("month-heatmap", drawMonthHeatmap, data);
-        registerViz("monthly-anomaly", drawMonthlyAnomaly, data);
         fillMonthlyStats(data);
     })
     .catch(error => showLoadError("monthly-histogram", error));
@@ -43,9 +41,6 @@ d3.csv("data/c2_road_user_group_by_year.csv", d => ({
 }))
     .then(data => {
         drawRoadUserStack(data);
-        registerViz("road-user-slope", drawRoadUserSlope, data);
-        drawShareDonut(data);
-        registerViz("road-user-index", drawRoadUserIndex, data);
         fillRoadUserStats(data);
     })
     .catch(error => showLoadError("road-user-stack", error));
@@ -61,8 +56,6 @@ d3.csv("data/c3_road_user_severity_2016_2021.csv", d => ({
 }))
     .then(data => {
         drawSeverityScatter(data);
-        registerViz("bed-day-lollipop", drawBedDayLollipop, data);
-        registerViz("burden-dumbbell", drawBurdenDumbbell, data);
         fillSeverityStats(data);
     })
     .catch(error => showLoadError("severity-scatter", error));
@@ -79,8 +72,6 @@ d3.csv("data/c4_age_sex.csv", d => ({
 }))
     .then(data => {
         drawAgeSexBars(data);
-        registerViz("age-pyramid", drawAgePyramid, data);
-        registerViz("sex-ratio", drawSexRatio, data);
         fillAgeStats(data);
     })
     .catch(error => showLoadError("age-sex-bars", error));
@@ -95,17 +86,6 @@ d3.csv("data/c5_state_by_year.csv", d => ({
 }))
     .then(data => {
         drawStateLines(data);
-        registerViz("state-change-bars", drawStateChangeBars, data);
-        registerViz("state-waterfall", drawStateWaterfall, data);
         fillStateStats(data);
     })
     .catch(error => showLoadError("state-lines", error));
-
-d3.csv("data/c5b_first_nations_by_year.csv", d => ({
-    year: +d.year,
-    firstNations: +d.first_nations,
-    notStated: +d.status_not_stated,
-    share: +d.first_nations_share_pct
-}))
-    .then(data => registerViz("first-nations-area", drawFirstNationsArea, data))
-    .catch(error => showLoadError("first-nations-area", error));

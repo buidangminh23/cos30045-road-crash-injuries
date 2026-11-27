@@ -251,9 +251,6 @@
     color: #fff;
 }
 
-.donut-host {
-    max-width: 420px;
-}
 
 .html-key.html-key-always {
     display: flex;
@@ -262,6 +259,3 @@
     font-size: 14px;
 }
 
-.filters-compact {
-    justify-content: center;
-}
